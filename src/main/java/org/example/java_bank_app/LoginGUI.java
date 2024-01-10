@@ -12,7 +12,7 @@ public class LoginGUI extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Welcome in our bank");
+        stage.setTitle("Jakub Wilczek");
         stage.setScene(scene);
         stage.show();
     }
