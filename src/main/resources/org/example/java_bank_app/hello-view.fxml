@@ -7,19 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.LoginController">
    <children>
+      <TextField fx:id="usernameField" layoutX="227.0" layoutY="157.0" />
+      <PasswordField fx:id="password_field" layoutX="227.0" layoutY="225.0" />
+      <Button fx:id="login_button" layoutX="274.0" layoutY="262.0" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Log in" />
       <Label layoutX="240.0" layoutY="46.0" prefHeight="83.0" prefWidth="124.0" text="Welcome">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Button layoutX="274.0" layoutY="262.0" mnemonicParsing="false" text="Log in" />
       <Button layoutX="268.0" layoutY="349.0" mnemonicParsing="false" text="Regsiter" />
-      <PasswordField layoutX="227.0" layoutY="225.0" />
       <Label layoutX="275.0" layoutY="200.0" text="password" />
-      <TextField layoutX="227.0" layoutY="157.0" />
       <Label layoutX="274.0" layoutY="130.0" text="username" />
    </children>
 </AnchorPane>
