@@ -28,6 +28,14 @@ public class LoginController{
 
         if(user != null){
             System.out.println("udało sie jakims cudem XD");
+
+            System.out.println("ID Usera:" + user.getId());
+            System.out.println("Nazwa Usera: " + user.getUsername());
+            System.out.println("Pieniadze na koncie: " + user.getWallet().getMoneyAmount() + " " + user.getWallet().getCurrency().getCurrencyCode().toString());
+
+
+        }else{
+            System.out.println("Nie znaleziono uzytkownika");
         }
 
     }
