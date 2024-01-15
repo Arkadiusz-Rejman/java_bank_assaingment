@@ -6,31 +6,28 @@ import java.math.BigDecimal;
 public class User {
     private final int id;
     private final String username, password;
-    private final BigDecimal currnetBalance;
+    private final Wallet wallet;
 
 
-    public User(int id, String username, String password, BigDecimal currnetBalance) {
+    public User(int id, String username, String password, BigDecimal currnetBalance, CurrencyCode currencyCode) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.currnetBalance = currnetBalance;
+        wallet = new Wallet(currencyCode, currnetBalance);
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
-
-    public BigDecimal getCurrnetBalance() {
-        return currnetBalance;
-    }
+    public Wallet getWallet() { return this.wallet; }
 
 
 }
