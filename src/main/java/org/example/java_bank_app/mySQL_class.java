@@ -29,7 +29,9 @@ public class mySQL_class{
             if(resultSet.next()){
                 int userId = resultSet.getInt("id");
                 BigDecimal currentBalance = resultSet.getBigDecimal("balance");
-                return new User(userId,username,password,currentBalance);
+                CurrencyCode currencyCode = CurrencyCode.valueOf(resultSet.getString("currencyCode"));
+
+                return new User(userId,username,password,currentBalance, currencyCode);
             }
 
         }catch(SQLException e){
