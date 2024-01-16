@@ -1,8 +1,7 @@
-package org.example.java_bank_app;
+package org.example.java_bank_app.CurrencyPackage;
 
 public class Currency {
     private CurrencyCode currencyCode; //Trzyznakowy kod waluty: PLN, EUR, itd... (w ENUMIE CurrencyCode)
-    private double exchangeRate; //Kurs waluty w stosunku do PLN
 
     public Currency (CurrencyCode currencyCode){
         this.currencyCode = currencyCode;
@@ -10,7 +9,11 @@ public class Currency {
 
     //GETTERS
     public double getExchangeRate() {
-        return exchangeRate;
+        return CurrencyRateAPI.currencyRate(this.currencyCode);
+    }
+
+    public double getExchangeRate(CurrencyCode currencyCode) {
+        return CurrencyRateAPI.currencyRate(currencyCode);
     }
 
     public CurrencyCode getCurrencyCode() {
@@ -18,10 +21,6 @@ public class Currency {
     }
 
     //SETTERS
-
-    public void setExchangeRate(double exchangeRate) {
-        this.exchangeRate = exchangeRate;
-    }
 
     public void setCurrencyCode(CurrencyCode currencyCode) {
         this.currencyCode = currencyCode;
