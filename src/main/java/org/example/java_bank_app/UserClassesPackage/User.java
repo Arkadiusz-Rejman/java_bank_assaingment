@@ -1,5 +1,7 @@
-package org.example.java_bank_app;
+package org.example.java_bank_app.UserClassesPackage;
 
+
+import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
 
 import java.math.BigDecimal;
 
