@@ -1,20 +1,35 @@
 package org.example.java_bank_app.ControllersPackage;
 
+import com.mysql.cj.log.Log;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.example.java_bank_app.LoginGUI;
 import org.example.java_bank_app.SQLPackage.mySQL_class;
 import org.example.java_bank_app.UserClassesPackage.User;
 
+
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginController{
+    private Parent root;
     @FXML
     public TextField usernameField;
+    @FXML
     public PasswordField password_field;
+    @FXML
+    public Button register;
     @FXML
     private Label welcomeText;
     @FXML
@@ -43,4 +58,20 @@ public class LoginController{
         }
 
     }
+    
+    public void onRegisterButtonClick(ActionEvent e) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("register-view.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.setX(600);
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.show();
+
+
+    }
+
+
 }
