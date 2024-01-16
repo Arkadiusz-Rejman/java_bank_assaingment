@@ -1,5 +1,6 @@
 package org.example.java_bank_app;
 
+
 public enum CurrencyCode {
     PLN,
     EUR,
