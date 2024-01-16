@@ -1,11 +1,12 @@
 package org.example.java_bank_app.CurrencyPackage;
 
 import com.google.gson.*;
-import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
+
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+
 import java.net.URL;
 
 public class CurrencyRateAPI {
@@ -17,6 +18,8 @@ public class CurrencyRateAPI {
 
             // Tworzymy obiekt URL i otwieramy połączenie HTTP
             connection = (HttpURLConnection) new URL(url).openConnection();
+
+
             connection.setRequestMethod("GET");
 
             // Odczytujemy dane z odpowiedzi
