@@ -7,7 +7,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
-import java.net.URL;
+import java.net.URI;
+
 
 public class CurrencyRateAPI {
     public static double currencyRate(CurrencyCode currencyCode){
@@ -17,7 +18,9 @@ public class CurrencyRateAPI {
             String url = "http://api.nbp.pl/api/exchangerates/tables/A?format=json";
 
             // Tworzymy obiekt URL i otwieramy połączenie HTTP
-            connection = (HttpURLConnection) new URL(url).openConnection();
+            connection = (HttpURLConnection) new URI(url).toURL().openConnection();
+
+
 
 
             connection.setRequestMethod("GET");
