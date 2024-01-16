@@ -1,4 +1,7 @@
-package org.example.java_bank_app;
+package org.example.java_bank_app.SQLPackage;
+
+import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
+import org.example.java_bank_app.UserClassesPackage.User;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -12,10 +15,11 @@ public class mySQL_class{
 
 
 
-    public static User validateLogin(String username, String password){
+    public static User validateLogin(String username, String password) throws SQLException {
+        Connection connection = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
+            connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM user WHERE username = ? AND userpassword = ?"
             );
@@ -36,11 +40,16 @@ public class mySQL_class{
 
         }catch(SQLException e){
             e.printStackTrace();
+
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return null;
 
+        finally {
+            if(connection != null) connection.close();
+        }
+
+        return null;
     }
 
 }
