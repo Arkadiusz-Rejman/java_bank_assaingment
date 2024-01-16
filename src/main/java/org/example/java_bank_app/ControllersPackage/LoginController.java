@@ -1,4 +1,4 @@
-package org.example.java_bank_app;
+package org.example.java_bank_app.ControllersPackage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,8 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.example.java_bank_app.SQLPackage.mySQL_class;
+import org.example.java_bank_app.UserClassesPackage.User;
 
-import java.math.BigDecimal;
+import java.sql.SQLException;
 
 public class LoginController{
     @FXML
@@ -24,7 +26,12 @@ public class LoginController{
         String username = usernameField.getText();
         String password = password_field.getText();
 
-        User user = mySQL_class.validateLogin(username,password);
+        User user = null;
+        try {
+            user = mySQL_class.validateLogin(username,password);
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
 
         if(user != null){
             System.out.println("udało sie jakims cudem XD");
@@ -32,6 +39,7 @@ public class LoginController{
             System.out.println("ID Usera:" + user.getId());
             System.out.println("Nazwa Usera: " + user.getUsername());
             System.out.println("Pieniadze na koncie: " + user.getWallet().getMoneyAmount() + " " + user.getWallet().getCurrency().getCurrencyCode().toString());
+            System.out.println("Kurs waluty: " + user.getWallet().getCurrency().getExchangeRate());
 
 
         }else{
