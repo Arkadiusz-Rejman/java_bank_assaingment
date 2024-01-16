@@ -52,4 +52,47 @@ public class mySQL_class{
         return null;
     }
 
-}
+    //true -> register succes
+    public static boolean register(String username,String password){
+        if(!isUsernameAvaliable(username)){
+            try {
+                Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
+
+                PreparedStatement preparedStatement = connection.prepareStatement(
+                        "INSERT INTO user(username,password) " + "VALUES(?,?)"
+                );
+
+                preparedStatement.setString(1,username);
+                preparedStatement.setString(2,password);
+
+                preparedStatement.executeUpdate();
+                return true;
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return false;
+    }
+
+    private static boolean isUsernameAvaliable(String username) {
+
+        try {
+            Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM user WHERE username = ?"
+            );
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (!resultSet.next()) {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+    //class "}"
+    }
