@@ -24,9 +24,6 @@ public class Wallet {
     }
 
     //SETTERS
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
     public void setMoneyAmount(BigDecimal moneyAmount) {
         this.moneyAmount = moneyAmount;
     }
