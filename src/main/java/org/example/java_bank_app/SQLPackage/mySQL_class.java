@@ -59,7 +59,7 @@ public class mySQL_class{
                 Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
 
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "INSERT INTO user(username,password) " + "VALUES(?,?)"
+                        "INSERT INTO user(username,userpassword,balance,currencyCode) " + "VALUES(?,?,0.0,'USD')"
                 );
 
                 preparedStatement.setString(1,username);

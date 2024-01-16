@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-import org.example.java_bank_app.ControllersPackage.*;
 
 public class LoginGUI extends Application {
 
