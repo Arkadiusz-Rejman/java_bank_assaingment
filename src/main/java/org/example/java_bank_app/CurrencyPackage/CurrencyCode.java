@@ -2,6 +2,7 @@ package org.example.java_bank_app.CurrencyPackage;
 
 
 public enum CurrencyCode {
+    PLN,
     THB,
     USD,
     AUD,

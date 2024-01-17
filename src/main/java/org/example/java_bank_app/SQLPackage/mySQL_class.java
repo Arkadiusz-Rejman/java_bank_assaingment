@@ -15,7 +15,7 @@ public class mySQL_class{
 
 
 
-    public static User validateLogin(String username, String password) throws SQLException {
+    public static User validateLogin(String username, String password) {
         Connection connection = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -32,21 +32,15 @@ public class mySQL_class{
 
             if(resultSet.next()){
                 int userId = resultSet.getInt("id");
-                BigDecimal currentBalance = resultSet.getBigDecimal("balance");
-                CurrencyCode currencyCode = CurrencyCode.valueOf(resultSet.getString("currencyCode"));
-
-                return new User(userId,username,password,currentBalance, currencyCode);
+                return new User(userId,username,password);
             }
+            connection.close();
 
         }catch(SQLException e){
             e.printStackTrace();
 
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
-        }
-
-        finally {
-            if(connection != null) connection.close();
         }
 
         return null;
@@ -59,13 +53,14 @@ public class mySQL_class{
                 Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
 
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "INSERT INTO user(username,userpassword,balance,currencyCode) " + "VALUES(?,?,0.0,'USD')"
+                        "INSERT INTO user(username,userpassword) " + "VALUES(?,?)"
                 );
 
                 preparedStatement.setString(1,username);
                 preparedStatement.setString(2,password);
 
                 preparedStatement.executeUpdate();
+                connection.close();
                 return true;
 
             } catch (SQLException e) {

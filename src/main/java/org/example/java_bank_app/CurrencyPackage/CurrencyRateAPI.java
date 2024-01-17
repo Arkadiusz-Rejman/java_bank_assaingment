@@ -19,10 +19,6 @@ public class CurrencyRateAPI {
 
             // Tworzymy obiekt URL i otwieramy połączenie HTTP
             connection = (HttpURLConnection) new URI(url).toURL().openConnection();
-
-
-
-
             connection.setRequestMethod("GET");
 
             // Odczytujemy dane z odpowiedzi

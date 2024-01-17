@@ -3,7 +3,9 @@ package org.example.java_bank_app.ControllersPackage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.java_bank_app.AlertPackage.Alert;
 import org.example.java_bank_app.SQLPackage.*;
+import org.example.java_bank_app.AlertPackage.*;
 
 public class RegisterController {
     public Button register_button;
@@ -21,51 +23,25 @@ public class RegisterController {
 
 
     public void onRegisterButtonClick(ActionEvent e){
-     String username = r_username_field.getText();
-     String password = r_password_field.getText();
-     String re_password = r_retype_password_field.getText();
+     String username = r_username_field.getText().trim();
+     String password = r_password_field.getText().trim();
+     String re_password = r_retype_password_field.getText().trim();
 
      if(validateUserInput(username,password,re_password)){
          if(mySQL_class.register(username,password)){
-             showAlert_succes();
+             Alert.showInfoAlert("Account created sucesfully");
+
          }else{
-             showAlert_taken();
+             Alert.showInfoAlert("Username taken");
          }
      }else{
-         showAlert_fail();
+         Alert.showInfoAlert("Username have to be at least 4 characters, check your re-type password also");
      }
 
     }
     private boolean validateUserInput(String username,String password, String re_password){
-        if(username.isEmpty() || password.isEmpty() || re_password.isEmpty()) return false;
-        if(username.length() < 4) return false;
-        if(!re_password.equals(password)) return false;
-        return true;
+        return username.length() >= 4 && !password.isEmpty() && re_password.equals(password);
     }
 
-    private void showAlert_succes() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Informacja");
-        alert.setHeaderText(null);
-        alert.setContentText("Account created sucesfully");
 
-        alert.showAndWait();
-    }
-
-    private void showAlert_fail() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Informacja");
-        alert.setHeaderText(null);
-        alert.setContentText("Username have to be at least 4 characters, check your re-type password also");
-
-        alert.showAndWait();
-    }
-    private void showAlert_taken() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Informacja");
-        alert.setHeaderText(null);
-        alert.setContentText("Username taken");
-
-        alert.showAndWait();
-    }
 }
