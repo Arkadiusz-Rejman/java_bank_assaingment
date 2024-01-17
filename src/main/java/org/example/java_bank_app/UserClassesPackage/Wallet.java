@@ -8,20 +8,23 @@ import java.math.BigDecimal;
 public class Wallet {
     private Currency currency;
     private BigDecimal moneyAmount;
+    private String name;
 
-    public Wallet(CurrencyCode currencyCode, BigDecimal moneyAmount){
+    public Wallet(CurrencyCode currencyCode, BigDecimal moneyAmount, String name){
         currency = new Currency(currencyCode);
         this.moneyAmount = moneyAmount;
+        this.name = name;
     }
 
     //GETTERS
     public Currency getCurrency() {
-        return currency;
+        return this.currency;
     }
 
     public BigDecimal getMoneyAmount() {
-        return moneyAmount;
+        return this.moneyAmount;
     }
+    public String getName() { return this.name; }
 
     //SETTERS
     public void setMoneyAmount(BigDecimal moneyAmount) {

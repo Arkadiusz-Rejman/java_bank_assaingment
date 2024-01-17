@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="269.0" prefWidth="221.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.AddWalletsController">
+   <children>
+      <Button fx:id="AddButton" layoutX="37.0" layoutY="233.0" mnemonicParsing="false" onAction="#addWallet" text="Add" />
+      <Button fx:id="RefreshButton" layoutX="129.0" layoutY="233.0" mnemonicParsing="false" text="refresh" />
+      <Button fx:id="returnButton" layoutX="7.0" layoutY="6.0" mnemonicParsing="false" text="return" />
+      <Label layoutX="82.0" layoutY="101.0" text="Balance">
+         <font>
+            <Font name="Avenir Next Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="162.0" text="Currency Code">
+         <font>
+            <Font name="Avenir Next Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="38.0" text="Wallet Name">
+         <font>
+            <Font name="Avenir Next Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="WalletNameTextField" layoutX="30.0" layoutY="65.0" />
+      <TextField fx:id="BalanceTextField" layoutX="30.0" layoutY="124.0" />
+      <ComboBox fx:id="CurrencyCodeComboBox" layoutX="36.0" layoutY="185.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

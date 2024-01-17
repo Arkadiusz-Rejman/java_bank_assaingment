@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import javafx.scene.Node;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,7 +30,7 @@ public class LoginController{
 
 
 
-    public void onLoginButtonClick(ActionEvent e){
+    public void onLoginButtonClick(ActionEvent e) throws IOException{
         String username = usernameField.getText();
         String password = password_field.getText();
 
@@ -38,9 +38,22 @@ public class LoginController{
 
 
         if(user != null){
-            System.out.println("ID Usera:" + user.getId());
-            System.out.println("Nazwa Usera: " + user.getUsername());
-            System.out.println("Portfele: " + user.getWallets());
+
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("loggedUser-view.fxml"));
+            Parent root = fxmlLoader.load();
+
+            user.setWallets(mySQL_class.getUserWallets(user));
+            LoggedUserController loggedUserController = fxmlLoader.getController();
+            loggedUserController.passUser(user);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setX(600);
+
+            Stage currentStage = (Stage)((Node) e.getSource()).getScene().getWindow();
+            currentStage.close();
+
+            stage.show();
         }else{
             System.out.println("Nie znaleziono uzytkownika");
         }
@@ -57,9 +70,9 @@ public class LoginController{
         stage.initModality(Modality.APPLICATION_MODAL);
 
         stage.show();
-
-
     }
+
+
 
 
 }

@@ -16,4 +16,6 @@ module org.example.java_bank_app {
     opens org.example.java_bank_app.ControllersPackage to javafx.fxml;
     exports org.example.java_bank_app.UserClassesPackage;
     opens org.example.java_bank_app.UserClassesPackage to javafx.fxml;
+    exports org.example.java_bank_app.CustomIteratorPackage;
+    opens org.example.java_bank_app.CustomIteratorPackage to javafx.fxml;
 }

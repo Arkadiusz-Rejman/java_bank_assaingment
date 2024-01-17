@@ -3,9 +3,8 @@ package org.example.java_bank_app.ControllersPackage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.example.java_bank_app.AlertPackage.Alert;
+import org.example.java_bank_app.AlertPackage.CustomAlert;
 import org.example.java_bank_app.SQLPackage.*;
-import org.example.java_bank_app.AlertPackage.*;
 
 public class RegisterController {
     public Button register_button;
@@ -29,13 +28,13 @@ public class RegisterController {
 
      if(validateUserInput(username,password,re_password)){
          if(mySQL_class.register(username,password)){
-             Alert.showInfoAlert("Account created sucesfully");
+             CustomAlert.showInfoAlert("Account created sucesfully");
 
          }else{
-             Alert.showInfoAlert("Username taken");
+             CustomAlert.showInfoAlert("Username taken");
          }
      }else{
-         Alert.showInfoAlert("Username have to be at least 4 characters, check your re-type password also");
+         CustomAlert.showInfoAlert("Username have to be at least 4 characters, check your re-type password also");
      }
 
     }
