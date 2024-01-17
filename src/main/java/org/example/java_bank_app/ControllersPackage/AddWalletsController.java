@@ -59,6 +59,7 @@ public class AddWalletsController implements Initializable {
             user.addWallet(currencyCode, balance, walletName);
             mySQL_class.addWallet(user, new Wallet(currencyCode, balance, walletName));
             CustomAlert.showInfoAlert("Wallet added succesfully!");
+            //dla uzytkownika który niema walleta po dodaniu, powinno sie to odrazu odswiezac po wyjsciu z okna (refresh button)
         }
     }
 }
