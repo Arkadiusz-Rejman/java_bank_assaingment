@@ -94,6 +94,18 @@ public class LoggedUserController implements Initializable {
         stage.show();
     }
 
+    public void openCurrencyRates() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("currencyRates-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setX(600);
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.show();
+    }
+
     @FXML
     public void deleteWallet(){
         if (!actuallWallet.isNull().get()) {
