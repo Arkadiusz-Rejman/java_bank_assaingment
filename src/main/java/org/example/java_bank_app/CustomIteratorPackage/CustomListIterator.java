@@ -21,6 +21,11 @@ public class CustomListIterator<T> {
         });
     }
 
+    public void updateList(ObservableList<T> newList){
+        list = newList;
+        iteratorIndex.set(0);
+    }
+
     public T getNext(){
         if(!list.isEmpty()){
             iteratorIndex.set(iteratorIndex.get() + 1);

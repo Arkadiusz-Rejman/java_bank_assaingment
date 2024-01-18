@@ -6,14 +6,18 @@ import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
 import java.math.BigDecimal;
 
 public class Wallet {
+    int id, id_user;
     private Currency currency;
     private BigDecimal moneyAmount;
     private String name;
 
-    public Wallet(CurrencyCode currencyCode, BigDecimal moneyAmount, String name){
+    public Wallet(int id, int id_user, CurrencyCode currencyCode, BigDecimal moneyAmount, String name){
         currency = new Currency(currencyCode);
         this.moneyAmount = moneyAmount;
         this.name = name;
+        this.id = id;
+        this.id_user = id_user;
+
     }
 
     //GETTERS

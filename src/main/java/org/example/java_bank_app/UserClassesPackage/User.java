@@ -2,8 +2,10 @@ package org.example.java_bank_app.UserClassesPackage;
 
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
+import org.example.java_bank_app.SQLPackage.mySQL_class;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -36,11 +38,5 @@ public class User {
     public ObservableList<Wallet> getWallets() { return this.wallets; }
 
     public void setWallets(ObservableList<Wallet> wallets) { this.wallets = wallets; }
-
-
-    public void addWallet(CurrencyCode currencyCode, BigDecimal balance, String name ){
-        wallets.add(new Wallet(currencyCode, balance, name));
-    }
-
 
 }

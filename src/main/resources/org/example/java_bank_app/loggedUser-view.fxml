@@ -48,6 +48,6 @@
       <Button layoutX="411.0" layoutY="225.0" mnemonicParsing="false" onAction="#nextWallet" text="next" />
       <Button layoutX="126.0" layoutY="236.0" mnemonicParsing="false" onAction="#previousWallet" text="previous" />
       <Button layoutX="183.0" layoutY="145.0" mnemonicParsing="false" text="delete wallet" />
-      <Button layoutX="384.0" layoutY="188.0" mnemonicParsing="false" text="refresh" />
+      <Button fx:id="refreshButton" layoutX="384.0" layoutY="188.0" mnemonicParsing="false" onAction="#refreshData" text="refresh" />
    </children>
 </AnchorPane>

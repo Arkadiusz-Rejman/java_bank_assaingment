@@ -93,8 +93,19 @@ public class LoggedUserController implements Initializable {
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
 
+        stage.setOnHidden((e -> {
+            refreshData();
+        }));
+
 
         stage.show();
+    }
+
+    @FXML
+    public void refreshData(){
+        user.setWallets(mySQL_class.getUserWallets(user));
+        walletsIterator.updateList(user.getWallets());
+        //Powinien poinformować jeżeli dodano jakiś portfel
     }
 
 

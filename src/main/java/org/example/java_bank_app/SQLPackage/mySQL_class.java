@@ -111,7 +111,8 @@ public class mySQL_class{
                 BigDecimal balance = resultSet.getBigDecimal("balance");
                 CurrencyCode currencyCode = CurrencyCode.valueOf(resultSet.getString("currencyCode"));
                 String name = resultSet.getString("name");
-                wallets.add(new Wallet(currencyCode, balance, name));
+                int id = resultSet.getInt("id");
+                wallets.add(new Wallet(id, user.getId(), currencyCode, balance, name));
             }
 
         } catch (SQLException e) {
@@ -120,7 +121,7 @@ public class mySQL_class{
         return wallets;
     }
 
-    public static void addWallet(User user, Wallet wallet){
+    public static void addWallet(User user, BigDecimal balance, CurrencyCode currencyCode, String name){
 
         try {
             Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
@@ -130,9 +131,9 @@ public class mySQL_class{
             );
 
             preparedStatement.setInt(1, user.getId());
-            preparedStatement.setBigDecimal(2, wallet.getMoneyAmount());
-            preparedStatement.setString(3, wallet.getCurrency().getCurrencyCode().toString());
-            preparedStatement.setString(4, wallet.getName());
+            preparedStatement.setBigDecimal(2, balance);
+            preparedStatement.setString(3, currencyCode.toString());
+            preparedStatement.setString(4, name);
 
             preparedStatement.executeUpdate();
 

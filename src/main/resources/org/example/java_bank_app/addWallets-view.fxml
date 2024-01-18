@@ -7,11 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="269.0" prefWidth="221.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.AddWalletsController">
    <children>
       <Button fx:id="AddButton" layoutX="37.0" layoutY="233.0" mnemonicParsing="false" onAction="#addWallet" text="Add" />
-      <Button fx:id="RefreshButton" layoutX="129.0" layoutY="233.0" mnemonicParsing="false" text="refresh" />
+      <Button fx:id="RefreshButton" layoutX="129.0" layoutY="233.0" mnemonicParsing="false" onAction="#refreshInput" text="refresh" />
       <Button fx:id="returnButton" layoutX="7.0" layoutY="6.0" mnemonicParsing="false" text="return" />
       <Label layoutX="82.0" layoutY="101.0" text="Balance">
          <font>
