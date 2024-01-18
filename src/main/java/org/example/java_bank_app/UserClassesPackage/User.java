@@ -37,6 +37,8 @@ public class User {
 
     public ObservableList<Wallet> getWallets() { return this.wallets; }
 
-    public void setWallets(ObservableList<Wallet> wallets) { this.wallets = wallets; }
+    public void setWallets(ObservableList<Wallet> wallets) {
+        this.wallets.setAll(wallets);
+    }
 
 }

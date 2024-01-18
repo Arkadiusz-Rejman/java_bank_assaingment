@@ -1,17 +1,19 @@
 package org.example.java_bank_app.ControllersPackage;
 
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
 import org.example.java_bank_app.CustomIteratorPackage.CustomListIterator;
 import org.example.java_bank_app.LoginGUI;
 import org.example.java_bank_app.UserClassesPackage.User;
@@ -19,7 +21,6 @@ import org.example.java_bank_app.SQLPackage.*;
 import org.example.java_bank_app.UserClassesPackage.Wallet;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,8 +29,9 @@ public class LoggedUserController implements Initializable {
     @FXML
     Label UserNameLabel, WalletNameLabel, BalanceLabel, CurrencyLabel;
     User user;
-    Wallet actuallWallet;
+    ObjectProperty<Wallet> actuallWallet;
     CustomListIterator<Wallet> walletsIterator;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -39,7 +41,6 @@ public class LoggedUserController implements Initializable {
         CurrencyLabel.setAlignment(Pos.CENTER);
 
 
-
         //Platform runLater musi być używany podczas gdy korzystamy ze zmiennej z innej klasy.
         //Dzieje się tak, gdyż blok inicjalizacyjny jest wykonywany przed przekazaniem zmiennej
 
@@ -47,24 +48,20 @@ public class LoggedUserController implements Initializable {
             //User Area
             UserNameLabel.setText(user.getUsername());
 
-            //Wallet Area
-            if(!user.getWallets().isEmpty()){
-                actuallWallet = user.getWallets().get(0);
-                WalletNameLabel.setText(actuallWallet.getName());
-                BalanceLabel.setText(actuallWallet.getMoneyAmount().toString());
-                CurrencyLabel.setText(actuallWallet.getCurrency().getCurrencyCode().toString());
-            }else{
-                WalletNameLabel.setText("No wallets");
-            }
-
             //Wallets Iterator Area
             walletsIterator = new CustomListIterator<>(user.getWallets());
-            walletsIterator.setChangeListener((currentWallet ->{
-                actuallWallet = (Wallet) currentWallet;
-                WalletNameLabel.setText(actuallWallet.getName());
-                BalanceLabel.setText(actuallWallet.getMoneyAmount().toString());
-                CurrencyLabel.setText(actuallWallet.getCurrency().getCurrencyCode().toString());
-            }));
+            walletsIterator.setIteratorChangeListener((currentWallet -> actuallWallet.set((Wallet) currentWallet)));
+
+            //Wallet Area
+            actuallWallet = walletsIterator.getCurrentObjectProperty();
+
+            if(!actuallWallet.isNull().get()) setLabels();
+            changeLabelsVisibility(!user.getWallets().isEmpty());
+
+            actuallWallet.addListener((observableValue, oldValue, newValue) -> {
+                changeLabelsVisibility(newValue != null);
+                if(newValue != null) setLabels();
+            });
         });
 
     }
@@ -92,27 +89,40 @@ public class LoggedUserController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
-
-        stage.setOnHidden((e -> {
-            refreshData();
-        }));
-
+        stage.setOnHidden((e -> refreshData()));
 
         stage.show();
     }
 
     @FXML
-    public void refreshData(){
-        user.setWallets(mySQL_class.getUserWallets(user));
-        walletsIterator.updateList(user.getWallets());
-        //Powinien poinformować jeżeli dodano jakiś portfel
+    public void deleteWallet(){
+        if (!actuallWallet.isNull().get()) {
+            mySQL_class.deleteWallet(actuallWallet.get());
+            refreshData();
+        }
     }
 
-
+    @FXML
+    public void refreshData(){
+        user.setWallets(mySQL_class.getUserWallets(user));
+    }
 
     //pass variables
     public void passUser(User user){
         this.user = user;
+    }
+
+    //private methods
+    private void setLabels(){
+        WalletNameLabel.setText(actuallWallet.get().getName());
+        BalanceLabel.setText(actuallWallet.get().getMoneyAmount().toString());
+        CurrencyLabel.setText(actuallWallet.get().getCurrency().getCurrencyCode().toString());
+    }
+
+    private void changeLabelsVisibility(boolean visibility){
+        WalletNameLabel.setVisible(visibility);
+        BalanceLabel.setVisible(visibility);
+        CurrencyLabel.setVisible(visibility);
     }
 
 

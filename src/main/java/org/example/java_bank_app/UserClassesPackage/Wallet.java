@@ -24,11 +24,13 @@ public class Wallet {
     public Currency getCurrency() {
         return this.currency;
     }
-
     public BigDecimal getMoneyAmount() {
         return this.moneyAmount;
     }
     public String getName() { return this.name; }
+    public int getId() { return this.id; }
+    public int getId_user() { return this.id_user; }
+
 
     //SETTERS
     public void setMoneyAmount(BigDecimal moneyAmount) {

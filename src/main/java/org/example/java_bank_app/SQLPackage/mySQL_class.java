@@ -143,5 +143,21 @@ public class mySQL_class{
         }
 
     }
+
+    public static void deleteWallet(Wallet wallet){
+        try{
+            Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "DELETE FROM wallet WHERE id = ?"
+            );
+
+            preparedStatement.setInt(1, wallet.getId());
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     //class "}"
     }
