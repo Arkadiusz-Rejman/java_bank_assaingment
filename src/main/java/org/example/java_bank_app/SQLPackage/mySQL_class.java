@@ -160,48 +160,5 @@ public class mySQL_class{
             e.printStackTrace();
         }
     }
-
-    public static ObservableList<String> getWalletNamesForUser(int userId) {
-        ObservableList<String> walletNames = FXCollections.observableArrayList();
-
-        try (Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password)) {
-            String sql = "SELECT name FROM wallet WHERE id_user = ?";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, userId);
-
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    while (resultSet.next()) {
-                        String name = resultSet.getString("name");
-                        walletNames.add(name);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return walletNames;
-    }
-
-    public static String getWalletBalance(int id_user,String name) {
-        BigDecimal Balance = BigDecimal.valueOf(0);
-        try (Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password)) {
-            String sql = "SELECT Balance FROM wallet WHERE id_user = ? AND name = ?";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, id_user);
-                statement.setString(2, name);
-
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    while (resultSet.next()) {
-                        Balance = resultSet.getBigDecimal("Balance");
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return Balance.toString();
-    }
     //class "}"
     }

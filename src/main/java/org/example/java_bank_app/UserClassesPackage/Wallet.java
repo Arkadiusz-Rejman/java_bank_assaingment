@@ -19,7 +19,6 @@ public class Wallet {
         this.id_user = id_user;
 
     }
-
     //GETTERS
     public Currency getCurrency() {
         return this.currency;
@@ -35,5 +34,10 @@ public class Wallet {
     //SETTERS
     public void setMoneyAmount(BigDecimal moneyAmount) {
         this.moneyAmount = moneyAmount;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }
