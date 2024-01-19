@@ -21,10 +21,8 @@ public class CustomListIterator<T> {
         currentObject = new SimpleObjectProperty<>(!list.isEmpty() ? list.get(iteratorIndex.get()) : null);
 
 
-        iteratorIndex.addListener((observableValue, oldValue, newValue) -> Platform.runLater(() -> {
-            if(!list.isEmpty()) this.currentObject.set(list.get(iteratorIndex.get()));
-            else this.currentObject.set(null);
-        }));
+        iteratorIndex.addListener((observableValue, oldValue, newValue) -> Platform.runLater(()
+                -> this.currentObject.set(!list.isEmpty() ? list.get(iteratorIndex.get()) : null)));
 
         list.addListener((ListChangeListener<T>) change -> {
             while (change.next()) {
