@@ -18,10 +18,11 @@ import java.util.ResourceBundle;
 public class TransferController implements Initializable {
 
 
-    public TextField transfer_amount;
-    public TextField target_user;
+    @FXML
+    public TextField transfer_amount, target_user;
     @FXML
     public ChoiceBox<Wallet> wallet_box;
+    @FXML
     public Label balance_label;
 
 
@@ -29,7 +30,7 @@ public class TransferController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
-            wallet_box.setItems(mySQL_class.getUserWallets(user));
+            wallet_box.setItems(user.getWallets());
             wallet_box.setValue(wallet_box.getItems().getFirst());
             balance_label.setText("Current balance is: "+ wallet_box.getValue().getMoneyAmount()+" "+wallet_box.getValue().getCurrency().getCurrencyCode());
 
