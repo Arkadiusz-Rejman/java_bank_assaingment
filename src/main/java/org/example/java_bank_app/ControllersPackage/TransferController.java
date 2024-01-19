@@ -19,7 +19,7 @@ public class TransferController implements Initializable {
 
 
     @FXML
-    public TextField transfer_amount, target_user;
+    public TextField transfer_amoungt, target_user;
     @FXML
     public ChoiceBox<Wallet> wallet_box;
     @FXML

@@ -48,7 +48,7 @@ public class AddWalletsController implements Initializable {
     public void addWallet(){
 
         boolean isInputEmpty = WalletNameTextField.getText().isEmpty() || BalanceTextField.getText().isEmpty();
-        boolean isBalanceValid = BalanceTextField.getText().matches("[0-9]+\\.[0-9]");
+        boolean isBalanceValid = BalanceTextField.getText().matches("\\d+(\\.\\d{1,2})?");
         boolean isNameTaken = mySQL_class.getUserWallets(user).stream().anyMatch(wallet -> wallet.getName().equals(WalletNameTextField.getText()));
 
         if(!isBalanceValid || isInputEmpty || isNameTaken) CustomAlert.showInfoAlert("wrong input/name taken");
