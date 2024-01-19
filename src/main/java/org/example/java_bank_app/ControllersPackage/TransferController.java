@@ -40,6 +40,7 @@ public class TransferController implements Initializable {
             wallet_box.setItems(mySQL_class.getWalletNamesForUser(user.getId()));
             wallet_box.setValue(mySQL_class.getWalletNamesForUser(user.getId()).getFirst());
 
+            balance_label.setText("Current balance: " + mySQL_class.getWalletBalance(user.getId(), wallet_box.getValue()));
             wallet_box.valueProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
