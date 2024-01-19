@@ -5,12 +5,8 @@ import javafx.collections.ObservableList;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
 import org.example.java_bank_app.UserClassesPackage.User;
 import org.example.java_bank_app.UserClassesPackage.Wallet;
-
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class mySQL_class{
     private static final String DB_url = "jdbc:mysql://127.0.0.1:3306/bankapp";
     private static final String DB_username = "root";
