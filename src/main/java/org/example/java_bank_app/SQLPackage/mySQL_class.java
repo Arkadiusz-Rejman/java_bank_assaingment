@@ -9,6 +9,7 @@ import org.example.java_bank_app.UserClassesPackage.Wallet;
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class mySQL_class{
     private static final String DB_url = "jdbc:mysql://127.0.0.1:3306/bankapp";
@@ -48,7 +49,6 @@ public class mySQL_class{
 
         return null;
     }
-
     //true -> register succes
     public static boolean register(String username,String password){
         if(!isUsernameAvaliable(username)){
@@ -74,7 +74,6 @@ public class mySQL_class{
     }
 
     private static boolean isUsernameAvaliable(String username) {
-
         try {
             Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password);
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -121,6 +120,8 @@ public class mySQL_class{
         return wallets;
     }
 
+
+
     public static void addWallet(User user, BigDecimal balance, CurrencyCode currencyCode, String name){
 
         try {
@@ -158,6 +159,49 @@ public class mySQL_class{
         }catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    public static ObservableList<String> getWalletNamesForUser(int userId) {
+        ObservableList<String> walletNames = FXCollections.observableArrayList();
+
+        try (Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password)) {
+            String sql = "SELECT name FROM wallet WHERE id_user = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, userId);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        String name = resultSet.getString("name");
+                        walletNames.add(name);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return walletNames;
+    }
+
+    public static String getWalletBalance(int id_user,String name) {
+        BigDecimal Balance = BigDecimal.valueOf(0);
+        try (Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password)) {
+            String sql = "SELECT Balance FROM wallet WHERE id_user = ? AND name = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id_user);
+                statement.setString(2, name);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        Balance = resultSet.getBigDecimal("Balance");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return Balance.toString();
     }
     //class "}"
     }

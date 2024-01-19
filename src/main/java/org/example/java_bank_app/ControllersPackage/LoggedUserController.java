@@ -137,5 +137,20 @@ public class LoggedUserController implements Initializable {
         CurrencyLabel.setVisible(visibility);
     }
 
+    public void openTransferWindow() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transfer-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        TransferController transferController = fxmlLoader.getController();
+        transferController.passUser(user);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setX(600);
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.show();
+    }
+
 
 }
