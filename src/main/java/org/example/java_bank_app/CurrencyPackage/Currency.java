@@ -1,28 +1,13 @@
 package org.example.java_bank_app.CurrencyPackage;
 
-public class Currency {
-    private CurrencyCode currencyCode; //Trzyznakowy kod waluty: PLN, EUR, itd... (w ENUMIE CurrencyCode)
+import java.time.LocalDate;
 
-    public Currency (CurrencyCode currencyCode){
-        this.currencyCode = currencyCode;
-    }
+public abstract class Currency {
+    public abstract CurrencyCode getCurrencyCode();
 
-    //GETTERS
-    public double getExchangeRate() {
-        return CurrencyRateAPI.currencyRate(this.currencyCode);
-    }
+    public abstract double getCurrencyRate();
 
-    public double getExchangeRate(CurrencyCode currencyCode) {
-        return CurrencyRateAPI.currencyRate(currencyCode);
-    }
+    public abstract LocalDate getUpdateDate();
 
-    public CurrencyCode getCurrencyCode() {
-        return currencyCode;
-    }
-
-    //SETTERS
-
-    public void setCurrencyCode(CurrencyCode currencyCode) {
-        this.currencyCode = currencyCode;
-    }
+    public abstract void setCurrencyCode(CurrencyCode currencyCode);
 }
