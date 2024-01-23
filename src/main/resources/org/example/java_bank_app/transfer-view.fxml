@@ -13,7 +13,7 @@
       <Label layoutX="271.0" layoutY="268.0" text="Enter user: " />
       <TextField fx:id="transfer_amount" layoutX="226.0" layoutY="225.0" />
       <TextField fx:id="target_user" layoutX="226.0" layoutY="292.0" />
-      <Button layoutX="274.0" layoutY="348.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="transfer_button" layoutX="274.0" layoutY="348.0" mnemonicParsing="false" onAction="#onTransferButtonClick" text="Transfer" />
       <ChoiceBox fx:id="wallet_box" layoutX="225.0" layoutY="141.0" prefWidth="150.0" />
       <Label fx:id="balance_label" layoutX="240.0" layoutY="57.0" text="Balance: " />
    </children>

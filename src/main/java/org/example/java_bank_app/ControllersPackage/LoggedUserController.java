@@ -124,6 +124,7 @@ public class LoggedUserController implements Initializable {
         this.user = user;
     }
 
+
     //private methods
     private void setLabels(){
         WalletNameLabel.setText(actuallWallet.get().getName());
@@ -143,6 +144,10 @@ public class LoggedUserController implements Initializable {
 
         TransferController transferController = fxmlLoader.getController();
         transferController.passUser(user);
+        transferController.passActuallWallet(actuallWallet);
+
+//        TransferController passWallet = fxmlLoader.getController();
+//        passWallet.passActuallWallet(actuallWallet);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
