@@ -154,9 +154,6 @@ public class CurrencyRatesController implements Initializable {
             return outputRate;
     }
 
-
-
-
     private List<XYChart.Series<String, Double>> createSeriesArray(List<? extends CurrencyCode> currencyCodes){
         List<XYChart.Series<String, Double>> seriesArray = new ArrayList<>();
         for(CurrencyCode currencyCode : currencyCodes){
@@ -189,7 +186,6 @@ public class CurrencyRatesController implements Initializable {
 
         return outputCurrenciesDaysRange;
     }
-
 
     private void addSymbolsAction(List<XYChart.Series<String, Double>> listSeries){
         int chartSize = CCListView.getSelectionModel().getSelectedItems().size();
