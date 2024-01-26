@@ -12,7 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.example.java_bank_app.UserClassesPackage.Transaction;
+import org.example.java_bank_app.TransactionsPackage.Transaction;
 import org.example.java_bank_app.UserClassesPackage.User;
 import org.example.java_bank_app.UserClassesPackage.Wallet;
 import org.example.java_bank_app.SQLPackage.mySQL_class;

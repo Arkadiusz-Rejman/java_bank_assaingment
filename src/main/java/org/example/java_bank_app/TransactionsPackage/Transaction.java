@@ -1,4 +1,6 @@
-package org.example.java_bank_app.UserClassesPackage;
+package org.example.java_bank_app.TransactionsPackage;
+
+import org.example.java_bank_app.UserClassesPackage.Wallet;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

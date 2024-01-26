@@ -3,7 +3,7 @@ package org.example.java_bank_app.SQLPackage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
-import org.example.java_bank_app.UserClassesPackage.Transaction;
+import org.example.java_bank_app.TransactionsPackage.Transaction;
 import org.example.java_bank_app.UserClassesPackage.User;
 import org.example.java_bank_app.UserClassesPackage.Wallet;
 import java.math.BigDecimal;
@@ -235,6 +235,7 @@ public class mySQL_class{
 
     }
 
+    //Ustawic forreign Key na sender_wallet_id i receiver, a pozniej korzystać z referencji do Walleta?
 
 
 
