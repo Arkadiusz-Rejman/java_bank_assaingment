@@ -41,4 +41,10 @@ public class User {
         this.wallets.setAll(wallets);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                '}';
+    }
 }

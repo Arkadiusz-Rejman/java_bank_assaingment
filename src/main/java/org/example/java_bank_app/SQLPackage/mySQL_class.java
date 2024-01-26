@@ -3,6 +3,7 @@ package org.example.java_bank_app.SQLPackage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
+import org.example.java_bank_app.UserClassesPackage.Transaction;
 import org.example.java_bank_app.UserClassesPackage.User;
 import org.example.java_bank_app.UserClassesPackage.Wallet;
 import java.math.BigDecimal;
@@ -69,7 +70,7 @@ public class mySQL_class{
         return false;
     }
 
-    private static boolean isUsernameAvaliable(String username) {
+    public static boolean isUsernameAvaliable(String username) {
         try {
             Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password);
             PreparedStatement preparedStatement = connection.prepareStatement(
@@ -151,10 +152,89 @@ public class mySQL_class{
 
             preparedStatement.setInt(1, wallet.getId());
             preparedStatement.executeUpdate();
-
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
+
+    public static int find_user_id_by_nickname(String target_username) {
+        int id = 0;
+        try {
+
+            Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM user WHERE username = ?"
+            );
+            preparedStatement.setString(1, target_username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                id = resultSet.getInt("id");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return id;
+    }
+
+    public static ObservableList<Wallet> getUserWallets_byid(int user_id) {
+        ObservableList<Wallet> wallets = FXCollections.observableArrayList();
+
+        try {
+            Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password);
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM wallet WHERE id_user = ?"
+            );
+            preparedStatement.setInt(1, user_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                BigDecimal balance = resultSet.getBigDecimal("balance");
+                CurrencyCode currencyCode = CurrencyCode.valueOf(resultSet.getString("currencyCode"));
+                String name = resultSet.getString("name");
+                int id = resultSet.getInt("id");
+                wallets.add(new Wallet(id, user_id, currencyCode, balance, name));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return wallets;
+    }
+
+    public static void makeTransaction(Transaction transaction) throws SQLException {
+        Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
+
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "UPDATE wallet SET balance = balance + ? WHERE id_user = ? AND name = ?"
+        );
+        preparedStatement.setBigDecimal(1, BigDecimal.valueOf(transaction.getTransfer_amount()));
+        preparedStatement.setInt(2,transaction.getReciver_wallet().getId_user());
+        preparedStatement.setString(3,transaction.getReciver_wallet().getName());
+
+        preparedStatement.executeUpdate();
+
+        PreparedStatement preparedStatement2 = connection.prepareStatement(
+                "UPDATE wallet SET balance = balance - ? WHERE id_user = ? AND name = ?"
+        );
+        preparedStatement2.setBigDecimal(1,BigDecimal.valueOf(transaction.getTransfer_amount()));
+        preparedStatement2.setInt(2,transaction.getSender().getId());
+        preparedStatement2.setString(3,transaction.getSender_wallet().getName());
+
+        preparedStatement2.executeUpdate();
+
+        PreparedStatement preparedStatement3 = connection.prepareStatement(
+                "INSERT INTO transactions(transaction_amount,transaction_date,transaction_type,user_id) " + "VALUES(?,CURRENT_TIMESTAMP,?,?)"
+        );
+        preparedStatement3.setInt(1,transaction.getTransfer_amount());
+        preparedStatement3.setString(2, transaction.getTransaction_type());
+        preparedStatement3.setInt(3, transaction.getSender().getId());
+
+        preparedStatement3.executeUpdate();
+
+    }
+
+
     //class "}"
     }
