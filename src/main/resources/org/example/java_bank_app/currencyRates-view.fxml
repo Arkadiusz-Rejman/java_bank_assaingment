@@ -19,9 +19,9 @@
       <TextField fx:id="SourceValueTextField" layoutX="82.0" layoutY="357.0" />
       <TextField fx:id="TargetValueTextField" disable="true" layoutX="374.0" layoutY="357.0" />
       <Label fx:id="RateLabel" layoutX="246.0" layoutY="300.0" prefHeight="17.0" prefWidth="125.0" text="Exchange Rate:  1" />
-      <ListView fx:id="CCListView" layoutX="42.0" layoutY="47.0" prefHeight="191.0" prefWidth="111.0" />
-      <Label layoutX="46.0" layoutY="24.0" text="Choose currencies" />
-      <LineChart fx:id="ExchangeRatesLineChart" layoutX="173.0" layoutY="1.0" prefHeight="239.0" prefWidth="346.0">
+      <ListView fx:id="CCListView" layoutX="14.0" layoutY="48.0" prefHeight="191.0" prefWidth="111.0" />
+      <Label layoutX="19.0" layoutY="24.0" text="Choose currencies" />
+      <LineChart fx:id="ExchangeRatesLineChart" layoutX="128.0" prefHeight="252.0" prefWidth="460.0">
         <xAxis>
           <CategoryAxis fx:id="DateAxis" side="BOTTOM" />
         </xAxis>
@@ -30,6 +30,6 @@
         </yAxis>
       </LineChart>
       <Slider fx:id="DaySlider" layoutX="226.0" layoutY="273.0" majorTickUnit="5.0" max="30.0" min="2.0" prefHeight="16.0" prefWidth="291.0" value="7.0" />
-      <Label fx:id="DayLabel" layoutX="327.0" layoutY="256.0" text="Slider Value" />
+      <Label fx:id="DayLabel" layoutX="327.0" layoutY="256.0" text="7 Days" />
    </children>
 </AnchorPane>
