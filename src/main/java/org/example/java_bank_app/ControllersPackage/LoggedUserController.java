@@ -153,6 +153,7 @@ public class LoggedUserController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setOnHidden((e -> refreshData()));
 
         stage.show();
     }

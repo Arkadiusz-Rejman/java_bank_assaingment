@@ -46,6 +46,7 @@ public class LoginController{
             LoggedUserController loggedUserController = fxmlLoader.getController();
             loggedUserController.passUser(user);
 
+
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setX(600);
