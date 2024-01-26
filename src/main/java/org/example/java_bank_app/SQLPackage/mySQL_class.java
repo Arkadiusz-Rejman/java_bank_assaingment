@@ -209,7 +209,7 @@ public class mySQL_class{
         PreparedStatement preparedStatement = connection.prepareStatement(
                 "UPDATE wallet SET balance = balance + ? WHERE id_user = ? AND name = ?"
         );
-        preparedStatement.setBigDecimal(1, BigDecimal.valueOf(transaction.getTransfer_amount()));
+        preparedStatement.setBigDecimal(1, transaction.getTransfer_amount());
         preparedStatement.setInt(2,transaction.getReciver_wallet().getId_user());
         preparedStatement.setString(3,transaction.getReciver_wallet().getName());
 
@@ -218,22 +218,24 @@ public class mySQL_class{
         PreparedStatement preparedStatement2 = connection.prepareStatement(
                 "UPDATE wallet SET balance = balance - ? WHERE id_user = ? AND name = ?"
         );
-        preparedStatement2.setBigDecimal(1,BigDecimal.valueOf(transaction.getTransfer_amount()));
-        preparedStatement2.setInt(2,transaction.getSender().getId());
+        preparedStatement2.setBigDecimal(1, transaction.getTransfer_amount());
+        preparedStatement2.setInt(2,transaction.getSender_wallet().getId_user());
         preparedStatement2.setString(3,transaction.getSender_wallet().getName());
 
         preparedStatement2.executeUpdate();
 
         PreparedStatement preparedStatement3 = connection.prepareStatement(
-                "INSERT INTO transactions(transaction_amount,transaction_date,transaction_type,user_id) " + "VALUES(?,CURRENT_TIMESTAMP,?,?)"
+                "INSERT INTO transactions(transaction_amount, transaction_date, transaction_type, sender_wallet_id, receiver_wallet_id) " + "VALUES(?,CURRENT_TIMESTAMP,?,?,?)"
         );
-        preparedStatement3.setInt(1,transaction.getTransfer_amount());
+        preparedStatement3.setBigDecimal(1,transaction.getTransfer_amount());
         preparedStatement3.setString(2, transaction.getTransaction_type());
-        preparedStatement3.setInt(3, transaction.getSender().getId());
-
+        preparedStatement3.setInt(3, transaction.getSender_wallet().getId());
+        preparedStatement3.setInt(4, transaction.getReciver_wallet().getId());
         preparedStatement3.executeUpdate();
 
     }
+
+
 
 
     //class "}"

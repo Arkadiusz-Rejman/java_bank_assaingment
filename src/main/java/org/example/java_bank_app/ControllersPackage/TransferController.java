@@ -59,11 +59,9 @@ public class TransferController implements Initializable {
     public void passUser(User user){
         this.user = user;
     }
-    public void passActuallWallet(ObjectProperty<Wallet> actuallWallet) {
-        this.actuallWallet = actuallWallet;
-    }
+    public void passActuallWallet(ObjectProperty<Wallet> actuallWallet) { this.actuallWallet = actuallWallet; }
     public void onTransferButtonClick(ActionEvent event) throws SQLException {
-        int int_transfer_amount = Integer.parseInt(transfer_amount.getText());
+        BigDecimal int_transfer_amount = BigDecimal.valueOf(Double.parseDouble(transfer_amount.getText()));
         String string_target_username = target_user.getText();
 
         //Teraz -> wysłać zapytanie do sql
@@ -73,7 +71,7 @@ public class TransferController implements Initializable {
 
 
         if(mySQL_class.isUsernameAvaliable(string_target_username)){
-            if(int_transfer_amount <= wallet_box.getValue().getMoneyAmount().intValue()) {
+            if(int_transfer_amount.doubleValue() <= wallet_box.getValue().getMoneyAmount().doubleValue()) {
                     ObservableList<Wallet> wallets = mySQL_class.getUserWallets_byid(mySQL_class.find_user_id_by_nickname(string_target_username));
 
                     //pętla do zmiany - narazie działa
@@ -84,7 +82,7 @@ public class TransferController implements Initializable {
                         }
                     }
                     if (helperwallet != null) {
-                        Transaction transaction = new Transaction(user, wallet_box.getValue(), helperwallet, int_transfer_amount, string_target_username, transaction_type);
+                        Transaction transaction = new Transaction(wallet_box.getValue(), helperwallet, int_transfer_amount, transaction_type);
                         System.out.println(transaction.toString());
                         mySQL_class.makeTransaction(transaction);
                         wallet_box.setItems(user.getWallets());
