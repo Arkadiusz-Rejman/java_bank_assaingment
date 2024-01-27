@@ -15,7 +15,7 @@ import org.example.java_bank_app.AlertPackage.CustomAlert;
 import org.example.java_bank_app.CurrencyPackage.Currency;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
 import org.example.java_bank_app.CurrencyPackage.CurrencyRateAPI;
-import org.example.java_bank_app.HoveredThreshholdNodePackage.HoveredThresholdNode;
+import org.example.java_bank_app.UtilsPackage.HoveredThresholdNode;
 
 import java.net.URL;
 import java.text.DecimalFormat;

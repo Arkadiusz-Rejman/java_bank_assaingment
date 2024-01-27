@@ -66,8 +66,9 @@ public class TransferController implements Initializable {
 
         //Teraz -> wysłać zapytanie do sql
         //Transaction type temporary
+        //Transaction type wywalilem z bazy danych, bo dopiero na podstawie tego czy jesteś odbiorcą czy wysyłajacym
+        //w historii, będę mógł ustalić czy type jest send czy receive
 
-        String transaction_type = "send";
 
 
         if(mySQL_class.isUsernameAvaliable(string_target_username)){
@@ -82,8 +83,8 @@ public class TransferController implements Initializable {
                         }
                     }
                     if (helperwallet != null) {
-                        Transaction transaction = new Transaction(wallet_box.getValue(), helperwallet, int_transfer_amount, transaction_type);
-                        System.out.println(transaction.toString());
+                        Transaction transaction = new Transaction(wallet_box.getValue(), helperwallet, int_transfer_amount);
+                        System.out.println(transaction);
                         mySQL_class.makeTransaction(transaction);
                         wallet_box.setItems(user.getWallets());
 

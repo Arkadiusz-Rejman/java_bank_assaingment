@@ -65,6 +65,15 @@ public class LoggedUserController implements Initializable {
         });
 
     }
+    //Nie jest możliwe akutalnie usuwanie walletów, trzeba zrobic:
+//    ALTER TABLE transactions
+//    ADD CONSTRAINT receiver_wallet_fk
+//    FOREIGN KEY (receiver_wallet_id)
+//    REFERENCES wallet (id)
+//    ON DELETE CASCADE;
+//
+//    w bazie danych, transakcje usuwaly sie wraz z usuwanym walletem, jeszcze tego nie zrobilem
+
 
 
     @FXML
@@ -102,6 +111,45 @@ public class LoggedUserController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setOnHidden((e -> refreshData()));
+
+        stage.show();
+    }
+
+    @FXML
+    public void openTransferWindow() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transfer-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        TransferController transferController = fxmlLoader.getController();
+        transferController.passUser(user);
+        transferController.passActuallWallet(actuallWallet);
+
+//        TransferController passWallet = fxmlLoader.getController();
+//        passWallet.passActuallWallet(actuallWallet);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setX(600);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setOnHidden((e -> refreshData()));
+
+        stage.show();
+    }
+
+    @FXML
+    public void openTransactionsHistory() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transactionsHistory-view.fxml"));
+        Parent root = fxmlLoader.load();
+
+        TransactionsHistoryController transferController = fxmlLoader.getController();
+        transferController.passUser(user);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setX(600);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setOnHidden((e -> refreshData()));
 
         stage.show();
     }
@@ -138,25 +186,6 @@ public class LoggedUserController implements Initializable {
         CurrencyLabel.setVisible(visibility);
     }
 
-    public void openTransferWindow() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transfer-view.fxml"));
-        Parent root = fxmlLoader.load();
-
-        TransferController transferController = fxmlLoader.getController();
-        transferController.passUser(user);
-        transferController.passActuallWallet(actuallWallet);
-
-//        TransferController passWallet = fxmlLoader.getController();
-//        passWallet.passActuallWallet(actuallWallet);
-
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setX(600);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setOnHidden((e -> refreshData()));
-
-        stage.show();
-    }
 
 
 }

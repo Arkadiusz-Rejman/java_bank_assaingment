@@ -1,4 +1,4 @@
-package org.example.java_bank_app.HoveredThreshholdNodePackage;
+package org.example.java_bank_app.UtilsPackage;
 
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -12,23 +12,16 @@ public class HoveredThresholdNode extends StackPane {
     int seriesColor;
 
     public HoveredThresholdNode(double value, int seriesColor) {
-        this.seriesColor = seriesColor;
-        setPrefSize(10, 10);
 
         DecimalFormat decimalFormat = new DecimalFormat("#. ##");
         String formattedDouble = decimalFormat.format(value);
-        final Label label = createDataThresholdLabel(formattedDouble);
+        initialize(formattedDouble, seriesColor);
 
-        setOnMouseEntered(mouseEvent -> {
-            getChildren().setAll(label);
-            setCursor(Cursor.NONE);
-            toFront();
-        });
-        setOnMouseExited(mouseEvent -> {
-            getChildren().clear();
-            setCursor(Cursor.DEFAULT);
-        });
+    }
 
+    public HoveredThresholdNode(String value, int seriesColor) {
+
+        initialize(value, seriesColor);
 
     }
 
@@ -40,6 +33,23 @@ public class HoveredThresholdNode extends StackPane {
         label.setStyle("-fx-font-size: 10; -fx-font-weight: bold;");
         label.setMinSize(Label.USE_PREF_SIZE, Label.USE_PREF_SIZE);
         return label;
+    }
+
+    private void initialize(String value, int seriesColor){
+        this.seriesColor = seriesColor;
+        setPrefSize(10, 10);
+
+        final Label label = createDataThresholdLabel(value);
+
+        setOnMouseEntered(mouseEvent -> {
+            getChildren().setAll(label);
+            setCursor(Cursor.NONE);
+            toFront();
+        });
+        setOnMouseExited(mouseEvent -> {
+            getChildren().clear();
+            setCursor(Cursor.DEFAULT);
+        });
     }
 
 
