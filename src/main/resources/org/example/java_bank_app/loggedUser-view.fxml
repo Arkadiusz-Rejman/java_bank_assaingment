@@ -1,58 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.LoggedUserController">
    <children>
-      <ImageView fitHeight="274.0" fitWidth="292.0" layoutX="150.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="405.0" fitWidth="622.0" layoutX="-1.0" layoutY="-4.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../IconPackage/wallet-flat.png" />
+            <Image url="@../../../IconPackage/background.png" />
          </image>
       </ImageView>
-      <Button layoutX="114.0" layoutY="187.0" mnemonicParsing="false" onAction="#openAddWallets" text="add wallet" />
-      <Button fx:id="transfer_button" layoutX="37.0" layoutY="76.0" mnemonicParsing="false" onAction="#openTransferWindow" text="transfer money" />
-      <Button layoutX="169.0" layoutY="76.0" mnemonicParsing="false" onAction="#openTransactionsHistory" text="transaction history" />
+      <ImageView fitHeight="274.0" fitWidth="292.0" layoutX="172.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/chooseWallet_icon.png" />
+         </image>
+      </ImageView>
       <Label layoutX="505.0" layoutY="14.0" />
-      <Label layoutX="473.0" layoutY="11.0" text="Welcome back!">
+      <Label layoutX="437.0" layoutY="8.0" text="Welcome back!" textFill="#ffc400">
          <font>
             <Font name="Big Caslon Medium" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="UserNameLabel" layoutX="504.0" layoutY="32.0" text="Name">
+      <Label fx:id="UserNameLabel" layoutX="468.0" layoutY="29.0" text="Name" textFill="#ffc400">
          <font>
             <Font name="Big Caslon Medium" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="345.0" layoutY="22.0" mnemonicParsing="false" text="Account Options" />
-      <Button layoutX="331.0" layoutY="76.0" mnemonicParsing="false" onAction="#openCurrencyRates" text="Currency Rates" />
-      <Line endX="500.0" layoutX="99.0" layoutY="67.0" startX="-100.0" />
-      <Line endX="500.0" layoutX="99.0" layoutY="112.0" startX="-100.0" />
-      <Label fx:id="WalletNameLabel" layoutX="202.0" layoutY="147.0" prefHeight="30.0" prefWidth="179.0" text="Wallet Name">
+      <Label fx:id="WalletNameLabel" layoutX="246.0" layoutY="222.0" prefHeight="30.0" prefWidth="118.0" text="Wallet Name">
          <font>
-            <Font name="Big Caslon Medium" size="20.0" />
+            <Font name="Big Caslon Medium" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="BalanceLabel" layoutX="218.0" layoutY="240.0" prefHeight="23.0" prefWidth="133.0" text="balance:">
+      <Label fx:id="BalanceLabel" layoutX="245.0" layoutY="265.0" prefHeight="23.0" prefWidth="133.0" text="balance:">
          <font>
-            <Font name="Big Caslon Medium" size="20.0" />
+            <Font name="Big Caslon Medium" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="CurrencyLabel" layoutX="218.0" layoutY="271.0" prefHeight="23.0" prefWidth="133.0" text="currency:">
+      <Label fx:id="CurrencyLabel" layoutX="245.0" layoutY="287.0" prefHeight="25.0" prefWidth="127.0" text="currency:">
          <font>
-            <Font name="Big Caslon Medium" size="20.0" />
+            <Font name="Big Caslon Medium" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="383.0" layoutY="136.0" mnemonicParsing="false" text="Wallet Options" />
       <Button layoutX="473.0" layoutY="76.0" mnemonicParsing="false" text="show wallets" />
-      <Button layoutX="424.0" layoutY="225.0" mnemonicParsing="false" onAction="#nextWallet" text="next" />
-      <Button layoutX="104.0" layoutY="238.0" mnemonicParsing="false" onAction="#previousWallet" text="previous" />
-      <Button layoutX="157.0" layoutY="136.0" mnemonicParsing="false" onAction="#deleteWallet" text="delete wallet" />
-      <Button fx:id="refreshButton" layoutX="404.0" layoutY="181.0" mnemonicParsing="false" onAction="#refreshData" text="refresh" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="62.0" layoutX="-13.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" width="633.0">
+         <fill>
+            <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0" startX="1.0" startY="0.8693586698337291">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9843137264251709" green="0.8509804010391235" blue="0.30588236451148987" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <ImageView fx:id="AddWalletImage" fitHeight="35.0" fitWidth="45.0" layoutX="142.0" layoutY="168.0" onMouseClicked="#openAddWallets" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/addWallet_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="DeleteWalletImage" fitHeight="150.0" fitWidth="45.0" layoutX="171.0" layoutY="130.0" onMouseClicked="#deleteWallet" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/deleteWallet_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="RefreshImage" fitHeight="37.0" fitWidth="36.0" layoutX="393.0" layoutY="127.0" onMouseClicked="#refreshData" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/refresh_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="NextImage" fitHeight="37.0" fitWidth="45.0" layoutX="443.0" layoutY="233.0" onMouseClicked="#nextWallet" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/arrows_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="PreviousImage" fitHeight="37.0" fitWidth="45.0" layoutX="130.0" layoutY="233.0" onMouseClicked="#previousWallet" pickOnBounds="true" preserveRatio="true" rotate="-180.0">
+         <image>
+            <Image url="@../../../IconPackage/arrows_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="LogoutImage" fitHeight="43.0" fitWidth="48.0" layoutX="565.0" layoutY="5.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/logout_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="OptionsImage" fitHeight="53.0" fitWidth="36.0" layoutX="420.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/options_icon.png" />
+         </image>
+      </ImageView>
+      <Group fx:id="ShowWalletsButton" layoutX="466.0" layoutY="58.0">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../IconPackage/button_icon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="37.0" layoutY="17.0" text="Show Wallets">
+               <font>
+                  <Font name="Big Caslon Medium" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group fx:id="CurrencyRatesButton" layoutX="310.0" layoutY="58.0" onMouseClicked="#openCurrencyRates">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../IconPackage/button_icon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="27.0" layoutY="16.0" text="Currency Rates">
+               <font>
+                  <Font name="Big Caslon Medium" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group fx:id="TransactionHistoryButton" layoutX="155.0" layoutY="56.0" onMouseClicked="#openTransactionsHistory">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="155.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../IconPackage/button_icon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="10.0" layoutY="19.0" text="Transaction History">
+               <font>
+                  <Font name="Big Caslon Medium" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+      <Group fx:id="TransferMoneyButton" layoutX="-1.0" layoutY="58.0" onMouseClicked="#openTransferWindow">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../IconPackage/button_icon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="26.0" layoutY="17.0" text="Transfer Money">
+               <font>
+                  <Font name="Big Caslon Medium" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
    </children>
 </AnchorPane>

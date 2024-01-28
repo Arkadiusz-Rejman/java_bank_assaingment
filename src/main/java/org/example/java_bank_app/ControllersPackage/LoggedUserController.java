@@ -9,11 +9,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.CustomIteratorPackage.CustomListIterator;
 import org.example.java_bank_app.LoginGUI;
 import org.example.java_bank_app.UserClassesPackage.User;
@@ -28,17 +32,44 @@ public class LoggedUserController implements Initializable {
 
     @FXML
     Label UserNameLabel, WalletNameLabel, BalanceLabel, CurrencyLabel;
+
+    @FXML
+    Group TransferMoneyButton, TransactionHistoryButton, CurrencyRatesButton, ShowWalletsButton;
+
+    @FXML
+    ImageView NextImage, PreviousImage, AddWalletImage, DeleteWalletImage, RefreshImage, OptionsImage, LogoutImage;
+
+    Stage loginStage, currentStage;
+
     User user;
     ObjectProperty<Wallet> actuallWallet;
     CustomListIterator<Wallet> walletsIterator;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         UserNameLabel.setAlignment(Pos.CENTER);
         WalletNameLabel.setAlignment(Pos.CENTER);
-        BalanceLabel.setAlignment(Pos.CENTER);
-        CurrencyLabel.setAlignment(Pos.CENTER);
+
+        CustomAnimations.glowOnMouseEnter(
+                Color.GOLD,
+                NextImage, PreviousImage, AddWalletImage, DeleteWalletImage,
+                RefreshImage, OptionsImage, LogoutImage
+        );
+
+        CustomAnimations.glowOnMouseEnter(
+                Color.BLACK,
+                TransferMoneyButton, TransactionHistoryButton, CurrencyRatesButton, ShowWalletsButton
+        );
+
+        CustomAnimations.scaleOnMousePress(
+                NextImage, PreviousImage, AddWalletImage, DeleteWalletImage,
+                RefreshImage, OptionsImage, LogoutImage, TransferMoneyButton,
+                TransactionHistoryButton, CurrencyRatesButton, ShowWalletsButton
+        );
+
+
 
 
         //Platform runLater musi być używany podczas gdy korzystamy ze zmiennej z innej klasy.
@@ -103,6 +134,7 @@ public class LoggedUserController implements Initializable {
         stage.show();
     }
 
+    @FXML
     public void openCurrencyRates() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("currencyRates-view.fxml"));
         Parent root = fxmlLoader.load();
@@ -124,9 +156,6 @@ public class LoggedUserController implements Initializable {
         TransferController transferController = fxmlLoader.getController();
         transferController.passUser(user);
         transferController.passActuallWallet(actuallWallet);
-
-//        TransferController passWallet = fxmlLoader.getController();
-//        passWallet.passActuallWallet(actuallWallet);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -167,10 +196,18 @@ public class LoggedUserController implements Initializable {
         user.setWallets(mySQL_class.getUserWallets(user));
     }
 
+    @FXML
+    public void logout() {
+        currentStage.close();
+        loginStage.show();
+    }
+
     //pass variables
     public void passUser(User user){
         this.user = user;
     }
+    public void passLoginStage(Stage stage) { this.loginStage = stage; }
+    public void passStage(Stage stage) { this.currentStage = stage; }
 
 
     //private methods

@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.LoginController">
    <children>
-      <TextField fx:id="usernameField" layoutX="227.0" layoutY="157.0" />
-      <PasswordField fx:id="password_field" layoutX="227.0" layoutY="225.0" />
-      <Button fx:id="login_button" layoutX="274.0" layoutY="262.0" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Log in" />
-      <Label layoutX="240.0" layoutY="46.0" prefHeight="83.0" prefWidth="124.0" text="Welcome">
+      <ImageView fitHeight="332.0" fitWidth="411.0" layoutX="-5.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../IconPackage/background.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="usernameField" layoutX="116.0" layoutY="140.0" prefHeight="27.0" prefWidth="160.0">
          <font>
-            <Font size="29.0" />
+            <Font name="Big Caslon Medium" size="13.0" />
+         </font></TextField>
+      <PasswordField fx:id="password_field" layoutX="116.0" layoutY="208.0" />
+      <Label layoutX="116.0" layoutY="43.0" prefHeight="51.0" prefWidth="174.0" text="Welcome" textFill="#ffc800">
+         <font>
+            <Font name="Big Caslon Medium" size="40.0" />
          </font>
       </Label>
-      <Button fx:id="register" layoutX="268.0" layoutY="349.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" text="Regsiter" />
-      <Label layoutX="275.0" layoutY="200.0" text="password" />
-      <Label layoutX="274.0" layoutY="130.0" text="username" />
+      <Label layoutX="164.0" layoutY="183.0" text="password" textFill="#ffc800">
+         <font>
+            <Font name="Big Caslon Medium" size="16.0" />
+         </font></Label>
+      <Label layoutX="163.0" layoutY="113.0" text="username" textFill="#ffc800">
+         <font>
+            <Font name="Big Caslon Medium" size="16.0" />
+         </font></Label>
+      <ImageView fx:id="RegisterImage" fitHeight="40.0" fitWidth="70.0" layoutX="237.0" layoutY="249.0" onMouseClicked="#onRegisterButtonClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/regiter_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="RefreshImage" fitHeight="40.0" fitWidth="75.0" layoutX="116.0" layoutY="249.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/refresh_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="LoginImage" fitHeight="40.0" fitWidth="69.0" layoutX="174.0" layoutY="249.0" onMouseClicked="#onLoginButtonClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/login_icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
