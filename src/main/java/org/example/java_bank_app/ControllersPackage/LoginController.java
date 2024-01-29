@@ -51,6 +51,17 @@ public class LoginController implements Initializable {
         CustomAnimations.scaleOnMousePress(
                 RefreshImage, LoginImage, RegisterImage
         );
+
+        password_field.setOnKeyPressed(e -> {
+            if (e.getCode().toString().equals("ENTER")) {
+                // Wywołanie funkcji po naciśnięciu Enter
+                try {
+                    onLoginButtonClick();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     @FXML
@@ -65,7 +76,6 @@ public class LoginController implements Initializable {
 
             FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("loggedUser-view.fxml"));
             Parent root = fxmlLoader.load();
-
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -108,6 +118,5 @@ public class LoginController implements Initializable {
     public void passStage(Stage stage){
         this.stage = stage;
     }
-
 
 }

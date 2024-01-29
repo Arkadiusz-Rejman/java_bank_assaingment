@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.ShowWalletsController">
+   <children>
+      <ImageView fitHeight="409.0" fitWidth="602.0" layoutY="-6.0">
+         <image>
+            <Image url="@../../../IconPackage/background.png" />
+         </image>
+      </ImageView>
+      <ListView fx:id="wallet_list" layoutX="144.0" layoutY="99.0" onMouseClicked="#handleMouseClicked" prefHeight="248.0" prefWidth="312.0" />
+      <Label layoutX="240.0" layoutY="49.0" prefHeight="34.0" prefWidth="152.0" text="Your wallets">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="0.8261904716491699" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="0.9856481552124023" blue="0.5694444179534912" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ImageView fx:id="return_button" fitHeight="43.0" fitWidth="52.0" layoutX="145.0" layoutY="45.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#returnonbuttonclick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/arrows_icon.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

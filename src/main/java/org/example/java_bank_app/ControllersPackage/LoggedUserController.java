@@ -119,7 +119,7 @@ public class LoggedUserController implements Initializable {
     @FXML
     public void openAddWallets() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("addWallets-view.fxml"));
-        File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/addWallets-style.css");
+        File cssFile = new File("src/main/resources/org/example/java_bank_app/addWallets-style.css");
 
         Parent root = fxmlLoader.load();
 
@@ -142,7 +142,7 @@ public class LoggedUserController implements Initializable {
     public void openCurrencyRates() throws IOException{
 
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("currencyRates-view.fxml"));
-        File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/currencyRates-style.css");
+        File cssFile = new File("src/main/resources/org/example/java_bank_app/currencyRates-style.css");
 
         Parent root = fxmlLoader.load();
 
@@ -183,7 +183,7 @@ public class LoggedUserController implements Initializable {
 
         if(!user.getWallets().isEmpty()){
             FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transactionsHistory-view.fxml"));
-            File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/transactionsHistory-style.css");
+            File cssFile = new File("src/main/resources/org/example/java_bank_app/transactionsHistory-style.css");
             Parent root = fxmlLoader.load();
 
             TransactionsHistoryController transferController = fxmlLoader.getController();
@@ -203,6 +203,27 @@ public class LoggedUserController implements Initializable {
             stage.show();
         }else CustomAlert.showInfoAlert("User has no wallets");
 
+    }
+
+    @FXML
+    public void openShowWallets() throws IOException{
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("showwallets-view.fxml"));
+            File cssFile = new File("src/main/resources/org/example/java_bank_app/showwallets_style.css");
+            Parent root = fxmlLoader.load();
+
+            ShowWalletsController showWalletsController = fxmlLoader.getController();
+            showWalletsController.passUser(user);
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+
+            stage.setScene(scene);
+
+            stage.setX(600);
+            stage.setOnHidden((e -> refreshData()));
+
+            stage.show();
     }
 
     @FXML

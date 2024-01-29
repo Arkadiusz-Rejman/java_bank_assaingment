@@ -1,0 +1,12 @@
+#wallet_list{
+    -fx-border-color: gold;
+    -fx-border-width: 5px;
+    -fx-background-color: gold;
+}
+.wallet_list-cell:selected {
+    -fx-border-color: transparent;
+}
+.list-view:focused {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
