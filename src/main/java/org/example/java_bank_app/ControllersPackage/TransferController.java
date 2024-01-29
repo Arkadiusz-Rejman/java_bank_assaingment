@@ -39,8 +39,6 @@ public class TransferController implements Initializable {
     public TextField transfer_amount, target_user;
     @FXML
     public ChoiceBox<Wallet> wallet_box;
-    @FXML
-    public Button transfer_button;
     public Wallet helperwallet;
     public Group transfer_group;
     public Label label_in_group;
