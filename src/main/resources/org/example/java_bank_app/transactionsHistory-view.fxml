@@ -3,15 +3,22 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="586.0" prefWidth="1016.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.TransactionsHistoryController">
    <children>
+      <ImageView fitHeight="586.0" fitWidth="1016.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../IconPackage/background.png" />
+         </image>
+      </ImageView>
       <TableView fx:id="HistoryTableView" layoutX="13.0" layoutY="14.0" prefHeight="295.0" prefWidth="990.0">
         <columns>
           <TableColumn fx:id="DateTimeColumn" prefWidth="148.0" text="Date&amp;Time" />
@@ -27,18 +34,28 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <LineChart fx:id="WalletTransactionLineChart" layoutX="13.0" layoutY="309.0" prefHeight="262.0" prefWidth="712.0">
+      <LineChart fx:id="WalletTransactionLineChart" layoutX="139.0" layoutY="309.0" prefHeight="262.0" prefWidth="586.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="CurrencyAxis" side="LEFT" />
         </yAxis>
       </LineChart>
-      <ComboBox fx:id="WalletComboBox" layoutX="792.0" layoutY="370.0" prefWidth="150.0" />
-      <Label layoutX="853.0" layoutY="346.0" prefHeight="17.0" prefWidth="41.0" text="Wallet" />
-      <Label layoutX="841.0" layoutY="415.0" text="Days Range" />
-      <ComboBox fx:id="RangeComboBox" layoutX="792.0" layoutY="440.0" prefWidth="150.0" />
-      <Button fx:id="refreshButton" layoutX="843.0" layoutY="508.0" mnemonicParsing="false" onAction="#refresh" text="referesh" />
+      <ComboBox fx:id="WalletComboBox" layoutX="727.0" layoutY="343.0" prefWidth="150.0" />
+      <Label layoutX="727.0" layoutY="322.0" prefHeight="20.0" prefWidth="46.0" text="Wallet" textFill="#ffc800">
+         <font>
+            <Font name="Big Caslon Medium" size="16.0" />
+         </font></Label>
+      <Label layoutX="725.0" layoutY="392.0" text="Days Range" textFill="#ffc800">
+         <font>
+            <Font name="Big Caslon Medium" size="16.0" />
+         </font></Label>
+      <ComboBox fx:id="RangeComboBox" layoutX="727.0" layoutY="413.0" prefWidth="150.0" />
+      <ImageView fx:id="RefreshImage" fitHeight="46.0" fitWidth="46.0" layoutX="766.0" layoutY="479.0" onMouseClicked="#refresh" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../IconPackage/refresh_icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

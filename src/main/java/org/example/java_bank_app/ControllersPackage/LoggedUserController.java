@@ -24,8 +24,10 @@ import org.example.java_bank_app.UserClassesPackage.User;
 import org.example.java_bank_app.SQLPackage.*;
 import org.example.java_bank_app.UserClassesPackage.Wallet;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoggedUserController implements Initializable {
@@ -120,13 +122,18 @@ public class LoggedUserController implements Initializable {
     @FXML
     public void openAddWallets() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("addWallets-view.fxml"));
+        File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/addWallets-style.css");
+
         Parent root = fxmlLoader.load();
 
         AddWalletsController addWalletsController = fxmlLoader.getController();
         addWalletsController.passUser(user);
 
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+
+        stage.setScene(scene);
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setOnHidden((e -> refreshData()));
@@ -137,10 +144,15 @@ public class LoggedUserController implements Initializable {
     @FXML
     public void openCurrencyRates() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("currencyRates-view.fxml"));
+        File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/currencyRates-style.css");
+
         Parent root = fxmlLoader.load();
 
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+
+        stage.setScene(scene);
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setOnHidden((e -> refreshData()));
@@ -169,13 +181,19 @@ public class LoggedUserController implements Initializable {
     @FXML
     public void openTransactionsHistory() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transactionsHistory-view.fxml"));
+        File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/transactionsHistory-style.css");
         Parent root = fxmlLoader.load();
 
         TransactionsHistoryController transferController = fxmlLoader.getController();
         transferController.passUser(user);
 
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+
+        stage.setScene(scene);
+
+
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setOnHidden((e -> refreshData()));

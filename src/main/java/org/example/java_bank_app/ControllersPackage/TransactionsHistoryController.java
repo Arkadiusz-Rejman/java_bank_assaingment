@@ -7,10 +7,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import org.example.java_bank_app.AlertPackage.CustomAlert;
+import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
 import org.example.java_bank_app.UtilsPackage.HoveredThresholdNode;
 import org.example.java_bank_app.SQLPackage.mySQL_class;
@@ -37,14 +41,18 @@ public class TransactionsHistoryController implements Initializable {
     @FXML
     LineChart<String, BigDecimal> WalletTransactionLineChart;
     @FXML
+    NumberAxis CurrencyAxis;
+    @FXML
     TableView<HistoryTransaction> HistoryTableView;
-
     @FXML
     TableColumn<HistoryTransaction, LocalDateTime> DateTimeColumn;
     @FXML
     TableColumn<HistoryTransaction, TransactionType> TypeColumn;
     @FXML
     TableColumn<HistoryTransaction, String> SenderColumn, ReceiverColumn, WalletColumn, TransactionAmountColumn, BalanceBeforeColumn, BalanceAfterColumn;
+
+    @FXML
+    ImageView RefreshImage;
 
 
     ObservableList<HistoryTransaction> allUserTransactions;
@@ -101,6 +109,7 @@ public class TransactionsHistoryController implements Initializable {
             WalletComboBox.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
                 WalletTransactionLineChart.getData().clear();
                 if(newValue != null){
+                    CurrencyAxis.setLabel(newValue.getCurrency().getCurrencyCode().toString());
                     if(walletIDTransactions.containsKey(newValue.getId())){
                         RangeComboBox.setDisable(false);
                         currentSeries = createSeriesArray(newValue, RangeComboBox.getValue().getItemValue());
@@ -138,6 +147,7 @@ public class TransactionsHistoryController implements Initializable {
         RangeComboBox.getSelectionModel().selectFirst();
 
         //HISTORY TABLE VIEW
+        HistoryTableView.setSelectionModel(null);
         HistoryTableView.setRowFactory(new Callback<>() {
             @Override
             public TableRow<HistoryTransaction> call(TableView<HistoryTransaction> tableView) {
@@ -148,9 +158,12 @@ public class TransactionsHistoryController implements Initializable {
 
                         if (!empty && item != null) {
                             if (item.getTransactionType() == TransactionType.RECEIVE) {
-                                setStyle("-fx-background-color: rgba(0, 255, 0, 0.1);");
+                                setStyle("-fx-background-color: rgba(255, 200, 0, 0.9);" +
+                                        "-fx-control-inner-background: white;"
+                                );
                             } else if (item.getTransactionType() == TransactionType.SEND) {
-                                setStyle("-fx-background-color: rgba(255, 0, 0, 0.1);");
+                                setStyle("-fx-background-color: rgba(0, 0, 0, 0.9);" +
+                                        "-fx-control-inner-background: black");
                             }
                         } else {
                             setStyle("");
@@ -162,6 +175,10 @@ public class TransactionsHistoryController implements Initializable {
 
         //CHART AREA
         WalletTransactionLineChart.setAnimated(false);
+
+        //ANIMATIONS
+        CustomAnimations.scaleOnMousePress(RefreshImage);
+        CustomAnimations.glowOnMouseEnter(Color.GOLD, RefreshImage);
 
 
     }
@@ -214,7 +231,7 @@ public class TransactionsHistoryController implements Initializable {
             for(XYChart.Data<String, BigDecimal> data : series.getData()){
                 String formattedDouble = decimalFormat.format(data.getYValue().doubleValue());
                 String labelText = formattedDouble + " " + WalletComboBox.getValue().getCurrency().getCurrencyCode();
-                data.setNode(new HoveredThresholdNode(labelText, 0));
+                data.setNode(new HoveredThresholdNode(labelText, 0, Color.WHITE));
             }
 
     }

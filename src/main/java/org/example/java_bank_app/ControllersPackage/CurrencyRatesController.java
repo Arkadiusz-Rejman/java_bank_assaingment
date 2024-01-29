@@ -6,17 +6,21 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import org.example.java_bank_app.AlertPackage.CustomAlert;
+import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.CurrencyPackage.Currency;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
 import org.example.java_bank_app.CurrencyPackage.CurrencyRateAPI;
 import org.example.java_bank_app.UtilsPackage.HoveredThresholdNode;
 
+import javax.security.auth.callback.Callback;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -40,6 +44,8 @@ public class CurrencyRatesController implements Initializable {
     NumberAxis RateAxis;
     @FXML
     Slider DaySlider;
+    @FXML
+    Group CalculatorGroup;
 
     private double finalRate;
     private int sliderDayValue;
@@ -60,9 +66,6 @@ public class CurrencyRatesController implements Initializable {
 
 
         //Line Chart & Axis Area
-
-        RateAxis.setLabel("Exchange Rate");
-        DateAxis.setLabel("Days");
         ExchangeRatesLineChart.setAnimated(false);
 
 
@@ -73,8 +76,10 @@ public class CurrencyRatesController implements Initializable {
         //ComboBox area
         SourceCCComboBox.setItems(currencyCodes);
         SourceCCComboBox.setValue(CurrencyCode.PLN);
+        SourceCCComboBox.setVisibleRowCount(3);
         TargetCCComboBox.setItems(currencyCodes);
         TargetCCComboBox.setValue(CurrencyCode.PLN);
+        TargetCCComboBox.setVisibleRowCount(3);
 
         SourceCCComboBox.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue)
                 -> finalRate = updateExchangeRateLabel());
@@ -108,6 +113,14 @@ public class CurrencyRatesController implements Initializable {
 
         CCListView.getSelectionModel().select(0);
 
+
+
+
+
+
+
+
+
         //Slider Area
         DaySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             sliderDayValue = newValue.intValue();
@@ -121,8 +134,11 @@ public class CurrencyRatesController implements Initializable {
             ExchangeRatesLineChart.getData().setAll(listToUpdate);
         });
 
-        //Label Area
-        RateLabel.setAlignment(Pos.CENTER);
+
+        //ANIMATIONS
+        CustomAnimations.glowOnMouseEnter(Color.GOLD, CalculatorGroup);
+        CustomAnimations.scaleOnMousePress(CalculatorGroup);
+
 
 
     }
@@ -149,7 +165,7 @@ public class CurrencyRatesController implements Initializable {
             double targetRate = CurrencyRateAPI.currencyRate(TargetCCComboBox.getValue());
             double outputRate = sourceRate / targetRate;
             DecimalFormat decimalFormat = new DecimalFormat("#.##");
-            RateLabel.setText("Exchange Rate: " + decimalFormat.format(outputRate));
+            RateLabel.setText(decimalFormat.format(outputRate));
             TargetValueTextField.clear();
             return outputRate;
     }
@@ -192,7 +208,7 @@ public class CurrencyRatesController implements Initializable {
 
         for(XYChart.Series<String, Double> series : listSeries){
             for(XYChart.Data<String, Double> data : series.getData()){
-                data.setNode(new HoveredThresholdNode(data.getYValue(), chartSize - 1));
+                data.setNode(new HoveredThresholdNode(data.getYValue(), chartSize - 1, Color.BLACK));
             }
         }
     }
@@ -202,7 +218,7 @@ public class CurrencyRatesController implements Initializable {
 
         for(XYChart.Series<String, Double> series : listSeries){
             for(XYChart.Data<String, Double> data : series.getData()){
-                data.setNode(new HoveredThresholdNode(data.getYValue(), startColor));
+                data.setNode(new HoveredThresholdNode(data.getYValue(), startColor, Color.BLACK));
             }
             startColor++;
         }

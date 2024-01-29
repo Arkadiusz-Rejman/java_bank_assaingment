@@ -6,7 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import org.example.java_bank_app.AlertPackage.CustomAlert;
+import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
 import org.example.java_bank_app.SQLPackage.mySQL_class;
 import org.example.java_bank_app.UserClassesPackage.User;
@@ -28,7 +31,7 @@ public class AddWalletsController implements Initializable {
     @FXML
     ComboBox<CurrencyCode> CurrencyCodeComboBox;
     @FXML
-    Button AddButton, RefreshButton, ReturnButton;
+    ImageView AddImage, RefreshImage;
 
     User user;
 
@@ -37,6 +40,10 @@ public class AddWalletsController implements Initializable {
         ObservableList<CurrencyCode> currencyCodes = FXCollections.observableArrayList(CurrencyCode.values());
         CurrencyCodeComboBox.setItems(currencyCodes);
         CurrencyCodeComboBox.setValue(CurrencyCode.PLN);
+        CurrencyCodeComboBox.setVisibleRowCount(3);
+
+        CustomAnimations.scaleOnMousePress(AddImage, RefreshImage);
+        CustomAnimations.glowOnMouseEnter(Color.GOLD, AddImage, RefreshImage);
 
     }
 

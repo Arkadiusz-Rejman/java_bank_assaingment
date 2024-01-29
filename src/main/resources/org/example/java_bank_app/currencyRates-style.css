@@ -1,0 +1,128 @@
+/* LINE CHART */
+.chart-legend {
+   -fx-background-color:  transparent;
+   -fx-padding: 0px;
+}
+
+.chart-legend-item-symbol{
+
+}
+
+.chart-legend-item{
+    -fx-text-fill: white;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+/* AXIS */
+.axis {
+    -fx-tick-label-fill: white;
+    -fx-font-family: 'Big Caslon';
+}
+
+.axis-label {
+   -fx-text-fill: goldenrod;
+}
+
+/* TEXT FIELD */
+.text-field {
+    -fx-background-radius: 10 0 10 0;
+    -fx-border-color: darkgoldenrod;
+    -fx-border-radius: 10 0 10 0;
+    -fx-border-width: 2;
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: grey;
+}
+
+/*COMBO BOX*/
+ .combo-box {
+     -fx-font-family: 'Big Caslon';
+     -fx-background-color: transparent;
+ }
+
+ .combo-box .list-view {
+     -fx-background-radius: 0 0 0 20;
+     -fx-background-color: black;
+ }
+
+ .combo-box .arrow {
+     -fx-background-color: rgba(255, 200, 0, 0.9);
+ }
+
+ .combo-box .cell {
+     -fx-text-fill: black;
+     -fx-border-width: 0;
+     -fx-alignment: center;
+     -fx-background-color: transparent;
+ }
+
+ .combo-box .list-cell:odd {
+     -fx-background-color: rgba(0, 0, 0, 0.9);
+     -fx-text-fill: white;
+ }
+
+ .combo-box .list-cell:even {
+     -fx-background-color: rgba(255, 200, 0, 0.9);
+     -fx-background-radius: 0 20 0 20;
+     -fx-text-fill: black;
+ }
+
+
+ .combo-box .list-cell:selected:focused {
+     -fx-underline: true;
+ }
+
+ .combo-box .list-cell:hover {
+     -fx-font-size: 14px;
+ }
+
+.combo-box .scroll-bar:vertical {
+     -fx-pref-width: 0px;
+ }
+
+.combo-box .scroll-bar:vertical .increment-arrow,
+.combo-box .scroll-bar:vertical .decrement-arrow,
+.combo-box .scroll-bar:vertical .increment-button,
+.combo-box .scroll-bar:vertical .decrement-button {
+     -fx-padding: 0px;
+ }
+
+ /* LIST VIEW */
+
+#CCListView {
+    -fx-background-radius: 20;
+    -fx-background-color: transparent;
+ }
+
+ #CCListView .list-cell{
+    -fx-border-weight: 0;
+    -fx-background-radius: 0 20 0 20;
+ }
+
+ #CCListView .list-cell:odd {
+    -fx-background-color: rgba(0, 0, 0, 0.9);
+    -fx-text-fill: white;
+ }
+
+  #CCListView .list-cell:even {
+     -fx-background-color: rgba(255, 200, 0, 0.9);
+     -fx-text-fill: black;
+  }
+
+ #CCListView .list-cell:filled:selected {
+      -fx-underline: true;
+  }
+
+
+#CCListView .scroll-bar:vertical {
+     -fx-pref-width: 0px;
+ }
+
+#CCListView .scroll-bar:vertical .increment-arrow,
+#CCListView .scroll-bar:vertical .decrement-arrow,
+#CCListView .scroll-bar:vertical .increment-button,
+#CCListView .scroll-bar:vertical .decrement-button {
+     -fx-padding: 0px;
+ }

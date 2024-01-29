@@ -1,0 +1,116 @@
+/* TABLE VIEW */
+
+.table-view .column-header {
+    -fx-font-family: 'Big Caslon';
+    -fx-background-color: #ffc800;
+    -fx-font-size: 15px;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.table-view .table-column {
+    -fx-border-color: black;
+    -fx-border-width: 0;
+}
+
+.table-view .table-cell {
+    -fx-border-width: 0;
+    -fx-font-family: 'Big Caslon';
+}
+
+.table-row-cell{
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:vertical {
+    -fx-pref-width: 0px;
+}
+
+.table-view .scroll-bar:vertical .increment-arrow,
+.table-view .scroll-bar:vertical .decrement-arrow,
+.table-view .scroll-bar:vertical .increment-button,
+.table-view .scroll-bar:vertical .decrement-button {
+    -fx-padding: 0px;
+}
+
+/* LINE CHART */
+.chart-legend {
+   -fx-background-color:  transparent;
+   -fx-padding: 0px;
+}
+
+.chart-legend-item-symbol{
+   -fx-background-color: transparent;
+}
+
+.chart-legend-item{
+    -fx-text-fill: transparent;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+/* AXIS */
+.axis {
+    -fx-tick-label-fill: white;
+    -fx-font-family: 'Big Caslon';
+}
+
+.axis-label {
+   -fx-text-fill: goldenrod;
+}
+
+.default-color0.chart-series-line { -fx-stroke: goldenrod; }
+.default-color0.chart-line-symbol { -fx-background-color: goldenrod, black; }
+
+
+/*COMBO BOX*/
+ .combo-box {
+     -fx-font-family: 'Big Caslon';
+     -fx-background-color: transparent;
+ }
+
+ .combo-box .list-view {
+     -fx-background-radius: 0 0 0 20;
+     -fx-background-color: black;
+ }
+
+ .combo-box .arrow {
+     -fx-background-color: rgba(255, 200, 0, 0.9);
+ }
+
+ .combo-box .cell {
+     -fx-text-fill: black;
+     -fx-border-width: 0;
+     -fx-alignment: center;
+     -fx-background-color: transparent;
+ }
+
+ .combo-box .list-cell:odd {
+     -fx-background-color: rgba(0, 0, 0, 0.9);
+     -fx-text-fill: white;
+ }
+
+ .combo-box .list-cell:even {
+     -fx-background-color: rgba(255, 200, 0, 0.9);
+     -fx-background-radius: 0 20 0 20;
+     -fx-text-fill: black;
+ }
+
+
+ .combo-box .list-cell:selected:focused {
+     -fx-underline: true;
+ }
+
+ .combo-box .list-cell:hover {
+     -fx-font-size: 14px;
+ }
+
+
+
+
+
