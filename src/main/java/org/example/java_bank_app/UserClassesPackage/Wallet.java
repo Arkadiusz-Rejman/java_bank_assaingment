@@ -11,19 +11,22 @@ public class Wallet {
     private final Currency currency;
     private BigDecimal moneyAmount;
     private String name;
+    private Status status;
 
-    public Wallet(int id, int id_user, CurrencyCode currencyCode, BigDecimal moneyAmount, String name){
+    public Wallet(int id, int id_user, CurrencyCode currencyCode, BigDecimal moneyAmount, String name, Status status){
         currency = new AutomaticCurrency(currencyCode);
         this.moneyAmount = moneyAmount;
         this.name = name;
         this.id = id;
         this.id_user = id_user;
+        this.status = status;
 
     }
     //GETTERS
     public Currency getCurrency() {
         return this.currency;
     }
+    public Status getStatus(){ return this.status; }
     public BigDecimal getMoneyAmount() {
         return this.moneyAmount;
     }

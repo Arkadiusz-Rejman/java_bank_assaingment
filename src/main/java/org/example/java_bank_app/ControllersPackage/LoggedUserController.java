@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.java_bank_app.AlertPackage.CustomAlert;
 import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.CustomIteratorPackage.CustomListIterator;
 import org.example.java_bank_app.LoginGUI;
@@ -26,6 +27,8 @@ import org.example.java_bank_app.UserClassesPackage.Wallet;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -33,7 +36,7 @@ import java.util.ResourceBundle;
 public class LoggedUserController implements Initializable {
 
     @FXML
-    Label UserNameLabel, WalletNameLabel, BalanceLabel, CurrencyLabel;
+    Label UserNameLabel, WalletNameLabel, BalanceLabel, CurrencyLabel, StatusLabel;
 
     @FXML
     Group TransferMoneyButton, TransactionHistoryButton, CurrencyRatesButton, ShowWalletsButton;
@@ -53,6 +56,7 @@ public class LoggedUserController implements Initializable {
 
         UserNameLabel.setAlignment(Pos.CENTER);
         WalletNameLabel.setAlignment(Pos.CENTER);
+        StatusLabel.setAlignment(Pos.CENTER);
 
         CustomAnimations.glowOnMouseEnter(
                 Color.GOLD,
@@ -89,28 +93,21 @@ public class LoggedUserController implements Initializable {
             actuallWallet = walletsIterator.getCurrentObjectProperty();
 
             if(!actuallWallet.isNull().get()) setLabels();
+            else StatusLabel.setText("");
             changeLabelsVisibility(!user.getWallets().isEmpty());
 
             actuallWallet.addListener((observableValue, oldValue, newValue) -> {
+                System.out.println(newValue);
                 changeLabelsVisibility(newValue != null);
                 if(newValue != null) setLabels();
             });
         });
 
     }
-    //Nie jest możliwe akutalnie usuwanie walletów, trzeba zrobic:
-//    ALTER TABLE transactions
-//    ADD CONSTRAINT receiver_wallet_fk
-//    FOREIGN KEY (receiver_wallet_id)
-//    REFERENCES wallet (id)
-//    ON DELETE CASCADE;
-//
-//    w bazie danych, transakcje usuwaly sie wraz z usuwanym walletem, jeszcze tego nie zrobilem
-
-
 
     @FXML
     public void nextWallet(){
+        System.out.println(actuallWallet);
         walletsIterator.getNext();
     }
 
@@ -143,6 +140,7 @@ public class LoggedUserController implements Initializable {
 
     @FXML
     public void openCurrencyRates() throws IOException{
+
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("currencyRates-view.fxml"));
         File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/currencyRates-style.css");
 
@@ -162,43 +160,49 @@ public class LoggedUserController implements Initializable {
 
     @FXML
     public void openTransferWindow() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transfer-view.fxml"));
-        Parent root = fxmlLoader.load();
+        if(!user.getWallets().isEmpty()){
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transfer-view.fxml"));
+            Parent root = fxmlLoader.load();
 
-        TransferController transferController = fxmlLoader.getController();
-        transferController.passUser(user);
-        transferController.passActuallWallet(actuallWallet);
+            TransferController transferController = fxmlLoader.getController();
+            transferController.passUser(user);
+            transferController.passActuallWallet(actuallWallet);
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setX(600);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setOnHidden((e -> refreshData()));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setX(600);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setOnHidden((e -> refreshData()));
 
-        stage.show();
+            stage.show();
+        }else CustomAlert.showInfoAlert("User has no wallets");
     }
 
     @FXML
     public void openTransactionsHistory() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transactionsHistory-view.fxml"));
-        File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/transactionsHistory-style.css");
-        Parent root = fxmlLoader.load();
 
-        TransactionsHistoryController transferController = fxmlLoader.getController();
-        transferController.passUser(user);
+        if(!user.getWallets().isEmpty()){
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transactionsHistory-view.fxml"));
+            File cssFile = new File("/Users/j.wili/Desktop/ProjektBank/src/main/resources/org/example/java_bank_app/transactionsHistory-style.css");
+            Parent root = fxmlLoader.load();
 
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+            TransactionsHistoryController transferController = fxmlLoader.getController();
+            transferController.passUser(user);
 
-        stage.setScene(scene);
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+
+            stage.setScene(scene);
 
 
-        stage.setX(600);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setOnHidden((e -> refreshData()));
+            stage.setX(600);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setOnHidden((e -> refreshData()));
 
-        stage.show();
+            stage.show();
+        }else CustomAlert.showInfoAlert("User has no wallets");
+
     }
 
     @FXML
@@ -212,6 +216,8 @@ public class LoggedUserController implements Initializable {
     @FXML
     public void refreshData(){
         user.setWallets(mySQL_class.getUserWallets(user));
+        if(!actuallWallet.isNull().get()) setLabels();
+        changeLabelsVisibility(!actuallWallet.isNull().get());
     }
 
     @FXML
@@ -230,6 +236,7 @@ public class LoggedUserController implements Initializable {
 
     //private methods
     private void setLabels(){
+        StatusLabel.setText(actuallWallet.get().getStatus().toString());
         WalletNameLabel.setText(actuallWallet.get().getName());
         BalanceLabel.setText(actuallWallet.get().getMoneyAmount().toString());
         CurrencyLabel.setText(actuallWallet.get().getCurrency().getCurrencyCode().toString());
@@ -239,6 +246,7 @@ public class LoggedUserController implements Initializable {
         WalletNameLabel.setVisible(visibility);
         BalanceLabel.setVisible(visibility);
         CurrencyLabel.setVisible(visibility);
+        StatusLabel.setVisible(visibility);
     }
 
 

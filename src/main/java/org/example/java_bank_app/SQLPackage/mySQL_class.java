@@ -7,6 +7,7 @@ import org.example.java_bank_app.TransactionsPackage.HistoryBalanceCalculator;
 import org.example.java_bank_app.TransactionsPackage.HistoryTransaction;
 import org.example.java_bank_app.TransactionsPackage.Transaction;
 import org.example.java_bank_app.TransactionsPackage.TransactionType;
+import org.example.java_bank_app.UserClassesPackage.Status;
 import org.example.java_bank_app.UserClassesPackage.User;
 import org.example.java_bank_app.UserClassesPackage.Wallet;
 import java.math.BigDecimal;
@@ -113,7 +114,8 @@ public class mySQL_class{
                 CurrencyCode currencyCode = CurrencyCode.valueOf(resultSet.getString("currencyCode"));
                 String name = resultSet.getString("name");
                 int id = resultSet.getInt("id");
-                wallets.add(new Wallet(id, user.getId(), currencyCode, balance, name));
+                Status status = Status.valueOf(resultSet.getString("status"));
+                wallets.add(new Wallet(id, user.getId(), currencyCode, balance, name, status));
             }
 
         } catch (SQLException e) {
@@ -130,7 +132,7 @@ public class mySQL_class{
             Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
 
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "INSERT INTO wallet(id_user,balance,currencyCode,name) " + "VALUES(?,?,?,?)"
+                    "INSERT INTO wallet(id_user,balance,currencyCode,name,status) " + "VALUES(?,?,?,?, 'ACTIVE')"
             );
 
             preparedStatement.setInt(1, user.getId());
@@ -152,7 +154,7 @@ public class mySQL_class{
             Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
 
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "DELETE FROM wallet WHERE id = ?"
+                    "UPDATE wallet SET status = 'DELETED' WHERE id = ?"
             );
 
             preparedStatement.setInt(1, wallet.getId());
@@ -200,7 +202,8 @@ public class mySQL_class{
                 BigDecimal balance = resultSet.getBigDecimal("balance");
                 CurrencyCode currencyCode = CurrencyCode.valueOf(resultSet.getString("currencyCode"));
                 String name = resultSet.getString("name");
-                wallet = new Wallet(identifier, id_user, currencyCode, balance, name);
+                Status status = Status.valueOf(resultSet.getString("status"));
+                wallet = new Wallet(identifier, id_user, currencyCode, balance, name, status);
             }
 
         } catch (SQLException e) {
@@ -225,7 +228,8 @@ public class mySQL_class{
                 CurrencyCode currencyCode = CurrencyCode.valueOf(resultSet.getString("currencyCode"));
                 String name = resultSet.getString("name");
                 int id = resultSet.getInt("id");
-                wallets.add(new Wallet(id, user_id, currencyCode, balance, name));
+                Status status = Status.valueOf(resultSet.getString("status"));
+                wallets.add(new Wallet(id, user_id, currencyCode, balance, name, status));
             }
 
         } catch (SQLException e) {

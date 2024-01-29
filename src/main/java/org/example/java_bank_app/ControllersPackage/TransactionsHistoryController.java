@@ -16,6 +16,7 @@ import javafx.util.Callback;
 import org.example.java_bank_app.AlertPackage.CustomAlert;
 import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
+import org.example.java_bank_app.UserClassesPackage.Status;
 import org.example.java_bank_app.UtilsPackage.HoveredThresholdNode;
 import org.example.java_bank_app.SQLPackage.mySQL_class;
 import org.example.java_bank_app.TransactionsPackage.HistoryTransaction;
@@ -63,6 +64,7 @@ public class TransactionsHistoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
+
             //INICJALIZACJA
             allUserTransactions = mySQL_class.getUserTransactions(user);
             Collections.reverse(allUserTransactions);
@@ -105,7 +107,9 @@ public class TransactionsHistoryController implements Initializable {
 
 
             //COMBO BOX AREA
-            WalletComboBox.setItems(user.getWallets());
+            List<Wallet> userWalletsList = user.getWallets().stream().filter(wallet -> wallet.getStatus() != Status.DELETED).toList();
+            ObservableList<Wallet> userWalletsObsList = FXCollections.observableArrayList(userWalletsList);
+            WalletComboBox.setItems(userWalletsObsList);
             WalletComboBox.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
                 WalletTransactionLineChart.getData().clear();
                 if(newValue != null){

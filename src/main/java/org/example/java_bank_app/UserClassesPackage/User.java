@@ -5,6 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.example.java_bank_app.TransactionsPackage.HistoryTransaction;
 
+import java.util.List;
+
 public class User {
     private final int id;
     private final String username, password;
@@ -34,7 +36,9 @@ public class User {
     public ObservableList<Wallet> getWallets() { return this.wallets; }
 
     public void setWallets(ObservableList<Wallet> wallets) {
-        this.wallets.setAll(wallets);
+        List<Wallet> userWallets = wallets.stream().filter(wallet -> wallet.getStatus() != Status.DELETED).toList();
+        this.wallets.setAll(userWallets)
+        ;
     }
 
     @Override

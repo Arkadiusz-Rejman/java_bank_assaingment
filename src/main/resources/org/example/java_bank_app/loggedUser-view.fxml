@@ -160,5 +160,10 @@
             </Label>
          </children>
       </Group>
+      <Label fx:id="StatusLabel" layoutX="257.0" layoutY="147.0" prefHeight="32.0" prefWidth="102.0" text="isActive" textFill="#ffc800">
+         <font>
+            <Font name="Big Caslon Medium" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
