@@ -192,7 +192,6 @@ public class LoggedUserController implements Initializable {
             Stage stage = new Stage();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
-
             stage.setScene(scene);
 
 

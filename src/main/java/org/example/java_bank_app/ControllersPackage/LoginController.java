@@ -24,6 +24,7 @@ import org.example.java_bank_app.SQLPackage.mySQL_class;
 import org.example.java_bank_app.UserClassesPackage.User;
 import org.w3c.dom.events.MouseEvent;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -99,10 +100,14 @@ public class LoginController implements Initializable {
     @FXML
     public void onRegisterButtonClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("register-view.fxml"));
-        Parent root1 = fxmlLoader.load();
+        File cssFile = new File("src/main/resources/org/example/java_bank_app/register_style.css");
+        Parent root = fxmlLoader.load();
 
         Stage stage = new Stage();
-        stage.setScene(new Scene(root1));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+        stage.setScene(scene);
+
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
 

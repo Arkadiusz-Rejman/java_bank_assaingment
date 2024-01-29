@@ -2,15 +2,23 @@ package org.example.java_bank_app.ControllersPackage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import org.example.java_bank_app.AlertPackage.CustomAlert;
+import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.SQLPackage.*;
 
-public class RegisterController {
-    public Button register_button;
-    @FXML
-    private Label gotologin_label;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+public class RegisterController implements Initializable {
+
+    public Label register_label;
+    @FXML
+    public Group register_button_group;
     @FXML
     private PasswordField r_password_field;
 
@@ -19,9 +27,10 @@ public class RegisterController {
 
     @FXML
     private TextField r_username_field;
+    
 
 
-    public void onRegisterButtonClick(ActionEvent e){
+    public void onRegisterButtonClick(MouseEvent e){
      String username = r_username_field.getText().trim();
      String password = r_password_field.getText().trim();
      String re_password = r_retype_password_field.getText().trim();
@@ -43,4 +52,11 @@ public class RegisterController {
     }
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        register_label.getStyleClass().add("register-text");
+
+
+        CustomAnimations.glowOnMouseEnter(Color.GOLD, register_button_group);
+    }
 }
