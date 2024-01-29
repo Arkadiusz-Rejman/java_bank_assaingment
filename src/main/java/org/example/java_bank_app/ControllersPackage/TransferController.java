@@ -7,12 +7,17 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.TransactionsPackage.Transaction;
 import org.example.java_bank_app.UserClassesPackage.Status;
 import org.example.java_bank_app.UserClassesPackage.User;
@@ -35,11 +40,10 @@ public class TransferController implements Initializable {
     @FXML
     public ChoiceBox<Wallet> wallet_box;
     @FXML
-    public Label balance_label;
-    @FXML
     public Button transfer_button;
     public Wallet helperwallet;
-    private LoggedUserController controller;
+    public Group transfer_group;
+    public Label label_in_group;
 
     ObjectProperty<Wallet> actuallWallet;
     ObservableList<Wallet> availableWallets;
@@ -50,11 +54,13 @@ public class TransferController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+        CustomAnimations.glowOnMouseEnter(Color.GOLD,transfer_group);
+
         Platform.runLater(() -> {
                 availableWallets = FXCollections.observableArrayList(user.getWallets().stream().filter(wallet -> wallet.getStatus() == Status.ACTIVE).toList());
                 wallet_box.setItems(availableWallets);
                 wallet_box.setValue(actuallWallet.getValue());
-                balance_label.setText("Current balance is: "+ wallet_box.getValue().getMoneyAmount()+" "+wallet_box.getValue().getCurrency().getCurrencyCode());
                 System.out.println(actuallWallet);
     });
     }
@@ -64,7 +70,7 @@ public class TransferController implements Initializable {
     }
     public void passActuallWallet(ObjectProperty<Wallet> actuallWallet) { this.actuallWallet = actuallWallet; }
     @FXML
-    public void onTransferButtonClick(ActionEvent event) throws SQLException {
+    public void onTransferButtonClick(MouseEvent event) throws SQLException {
         BigDecimal int_transfer_amount = BigDecimal.valueOf(Double.parseDouble(transfer_amount.getText()));
         String string_target_username = target_user.getText();
 

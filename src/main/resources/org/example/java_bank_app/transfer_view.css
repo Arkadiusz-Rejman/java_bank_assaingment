@@ -1,0 +1,52 @@
+.text-field {
+    -fx-background-radius: 10 0 10 0;
+    -fx-border-color: darkgoldenrod;
+    -fx-border-radius: 10 0 10 0;
+    -fx-border-width: 2;
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: grey;
+}
+.password-field{
+    -fx-background-radius: 10 0 10 0;
+    -fx-border-color: darkgoldenrod;
+    -fx-border-radius: 10 0 10 0;
+    -fx-border-width: 2;
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: grey;
+}
+
+.register-text{
+    -fx-text-fill: black;
+}
+.choice-box {
+    -fx-background-radius: 10 0 10 0;
+    -fx-border-color: darkgoldenrod;
+    -fx-border-radius: 10 0 10 0;
+    -fx-border-width: 2;
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: grey;
+    -fx-background-color: black;
+
+}
+
+.choice-box .arrow {
+    -fx-background-color: gold; /* Kolor strzałki rozwijającej */
+}
+
+.choice-box .arrow-button {
+    -fx-background-color: gold; /* Kolor przycisku strzałki rozwijającej */
+}
+
+.choice-box .arrow-button:hover {
+    -fx-background-color: gold; /* Kolor przycisku strzałki rozwijającej po najechaniu myszką */
+}
+
+.choice-box .arrow-button:pressed {
+    -fx-background-color: gold; /* Kolor przycisku strzałki rozwijającej po naciśnięciu */
+}
+.label{
+    -fx-text-fill: gold;
+}
+.choice-box .context-menu {
+    -fx-background-color: black; /* Kolor tła po rozwinięciu */
+}

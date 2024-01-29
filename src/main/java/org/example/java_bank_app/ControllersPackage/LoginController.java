@@ -81,6 +81,7 @@ public class LoginController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setX(600);
+            stage.setTitle("AK Bank");
 
             user.setWallets(mySQL_class.getUserWallets(user));
             LoggedUserController loggedUserController = fxmlLoader.getController();
@@ -105,6 +106,7 @@ public class LoginController implements Initializable {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);
+        stage.setTitle("AK Bank Register");
         scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
         stage.setScene(scene);
 

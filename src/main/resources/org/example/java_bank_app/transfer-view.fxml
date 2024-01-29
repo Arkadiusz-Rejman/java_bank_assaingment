@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.TransferController">
    <children>
-      <Label layoutX="261.0" layoutY="112.0" text="Choose wallet: " />
-      <Label layoutX="263.0" layoutY="192.0" text="Enter amount:" />
-      <Label layoutX="271.0" layoutY="268.0" text="Enter user: " />
-      <TextField fx:id="transfer_amount" layoutX="226.0" layoutY="225.0" />
-      <TextField fx:id="target_user" layoutX="226.0" layoutY="292.0" />
-      <Button fx:id="transfer_button" layoutX="274.0" layoutY="348.0" mnemonicParsing="false" onAction="#onTransferButtonClick" text="Transfer" />
-      <ChoiceBox fx:id="wallet_box" layoutX="225.0" layoutY="141.0" prefWidth="150.0" />
-      <Label fx:id="balance_label" layoutX="240.0" layoutY="57.0" text="Balance: " />
+      <ImageView fitHeight="418.0" fitWidth="608.0">
+         <image>
+            <Image url="@../../../IconPackage/background.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="264.0" layoutY="45.0" text="Choose wallet: " />
+      <Label layoutX="263.0" layoutY="127.0" text="Enter amount:" />
+      <Label layoutX="271.0" layoutY="209.0" text="Enter user: " />
+      <TextField fx:id="transfer_amount" layoutX="226.0" layoutY="160.0" />
+      <TextField fx:id="target_user" layoutX="227.0" layoutY="238.0" />
+      <ChoiceBox fx:id="wallet_box" layoutX="226.0" layoutY="76.0" prefWidth="150.0" />
+      <Group fx:id="transfer_group" layoutX="224.0" layoutY="314.0" onMouseClicked="#onTransferButtonClick">
+         <children>
+            <Label fx:id="label_in_group" layoutY="55.0" text="Transfer money">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="83.0" fitWidth="90.0" layoutX="31.0" layoutY="-28.0">
+               <image>
+                  <Image url="@../../../IconPackage/chooseWallet_icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
    </children>
 </AnchorPane>

@@ -129,6 +129,7 @@ public class LoggedUserController implements Initializable {
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+        stage.setTitle("AK Bank");
 
         stage.setScene(scene);
         stage.setX(600);
@@ -150,6 +151,7 @@ public class LoggedUserController implements Initializable {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
 
+        stage.setTitle("AK Bank");
         stage.setScene(scene);
         stage.setX(600);
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -162,14 +164,21 @@ public class LoggedUserController implements Initializable {
     public void openTransferWindow() throws IOException{
         if(!user.getWallets().isEmpty()){
             FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transfer-view.fxml"));
+            File cssFile = new File("src/main/resources/org/example/java_bank_app/transfer_view.css");
             Parent root = fxmlLoader.load();
 
             TransferController transferController = fxmlLoader.getController();
             transferController.passUser(user);
             transferController.passActuallWallet(actuallWallet);
 
+
             Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            stage.setTitle("AK Bank");
+
+            scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+
+            stage.setScene(scene);
             stage.setX(600);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setOnHidden((e -> refreshData()));
@@ -190,6 +199,7 @@ public class LoggedUserController implements Initializable {
             transferController.passUser(user);
 
             Stage stage = new Stage();
+            stage.setTitle("AK Bank");
             Scene scene = new Scene(root);
             scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
             stage.setScene(scene);
@@ -214,6 +224,7 @@ public class LoggedUserController implements Initializable {
             showWalletsController.passUser(user);
 
             Stage stage = new Stage();
+            stage.setTitle("AK Bank");
             Scene scene = new Scene(root);
             scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
 

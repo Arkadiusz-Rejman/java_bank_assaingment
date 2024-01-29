@@ -42,6 +42,6 @@ public class Wallet {
 
     @Override
     public String toString() {
-        return getName();
+        return getName()+"\t"+"["+getMoneyAmount()+getCurrency().getCurrencyCode()+"]";
     }
 }

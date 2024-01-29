@@ -10,10 +10,13 @@ import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.example.java_bank_app.AnimationsPackage.CustomAnimations;
 import org.example.java_bank_app.UserClassesPackage.User;
 import org.example.java_bank_app.UserClassesPackage.Wallet;
 
@@ -23,10 +26,14 @@ import java.util.ResourceBundle;
 
 public class ShowWalletsController implements Initializable {
     public ListView<Wallet> wallet_list;
+    public ImageView return_button;
     User user;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        CustomAnimations.glowOnMouseEnter(Color.GOLD, return_button);
+
+
         Platform.runLater(() -> {
             ObservableList<Wallet> wallets = user.getWallets();
             wallet_list.getItems().addAll(wallets);
