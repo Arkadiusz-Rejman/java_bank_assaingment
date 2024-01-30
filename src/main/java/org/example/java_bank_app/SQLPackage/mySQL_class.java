@@ -321,6 +321,15 @@ public class mySQL_class{
         return transactions;
     }
 
+    public static void ChangeWalletName(int id,String newname) throws SQLException {
+        Connection connection = DriverManager.getConnection(DB_url, DB_username, DB_password);
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "UPDATE wallet SET name = ? WHERE id = ?"
+        );
+        preparedStatement.setString(1, newname);
+        preparedStatement.setInt(2, id);
+        preparedStatement.executeUpdate();
+    }
 
     //class "}"
     }

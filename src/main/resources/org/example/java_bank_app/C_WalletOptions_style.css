@@ -1,0 +1,19 @@
+.text-field {
+    -fx-background-radius: 10 0 10 0;
+    -fx-border-color: darkgoldenrod;
+    -fx-border-radius: 10 0 10 0;
+    -fx-border-width: 2;
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: grey;
+}
+.password-field{
+    -fx-background-radius: 10 0 10 0;
+    -fx-border-color: darkgoldenrod;
+    -fx-border-radius: 10 0 10 0;
+    -fx-border-width: 2;
+    -fx-highlight-fill: transparent;
+    -fx-highlight-text-fill: grey;
+}
+.label{
+    -fx-text-fill: gold;
+}

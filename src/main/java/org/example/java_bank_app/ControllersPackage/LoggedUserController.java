@@ -164,7 +164,7 @@ public class LoggedUserController implements Initializable {
     public void openTransferWindow() throws IOException{
         if(!user.getWallets().isEmpty()){
             FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("transfer-view.fxml"));
-            File cssFile = new File("src/main/resources/org/example/java_bank_app/transfer_view.css");
+            File cssFile = new File("src/main/resources/org/example/java_bank_app/transfer.css");
             Parent root = fxmlLoader.load();
 
             TransferController transferController = fxmlLoader.getController();
@@ -234,6 +234,33 @@ public class LoggedUserController implements Initializable {
             stage.setOnHidden((e -> refreshData()));
 
             stage.show();
+    }
+
+    @FXML
+    public void openWalletOptions() throws IOException{
+        if(!user.getWallets().isEmpty()){
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("walletoptions-view.fxml"));
+            File cssFile = new File("src/main/resources/org/example/java_bank_app/walletoptions_style.css");
+            Parent root = fxmlLoader.load();
+
+            WalletOptionsController walletOptionsController = fxmlLoader.getController();
+            walletOptionsController.passUser(user);
+            walletOptionsController.passActuallWallet(actuallWallet);
+
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setTitle("Wallet Options");
+
+            scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+
+            stage.setScene(scene);
+            stage.setX(600);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setOnHidden((e -> refreshData()));
+
+            stage.show();
+        }else CustomAlert.showInfoAlert("User has no wallets");
     }
 
     @FXML

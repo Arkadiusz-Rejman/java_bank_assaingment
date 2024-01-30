@@ -48,5 +48,5 @@
     -fx-text-fill: gold;
 }
 .choice-box .context-menu {
-    -fx-background-color: black; /* Kolor tła po rozwinięciu */
+    -fx-background-color: #232323; /* Kolor tła po rozwinięciu */
 }

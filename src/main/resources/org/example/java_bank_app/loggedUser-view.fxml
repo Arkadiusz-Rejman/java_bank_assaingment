@@ -99,7 +99,7 @@
             <Image url="@../../../IconPackage/logout_icon.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="OptionsImage" fitHeight="53.0" fitWidth="36.0" layoutX="420.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="OptionsImage" fitHeight="53.0" fitWidth="36.0" layoutX="420.0" layoutY="159.0" onMouseClicked="#openWalletOptions" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../IconPackage/options_icon.png" />
          </image>

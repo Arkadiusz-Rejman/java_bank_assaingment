@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="274.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.java_bank_app.ControllersPackage.ChangeWalletNameController">
+   <children>
+      <ImageView fitHeight="274.0" fitWidth="404.0">
+         <image>
+            <Image url="@../../../IconPackage/background.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="142.0" layoutY="74.0" text="New wallet name:" />
+      <TextField fx:id="name_field" layoutX="114.0" layoutY="100.0" />
+      <Group fx:id="change_button" layoutX="114.0" layoutY="160.0" onMouseClicked="#changeName">
+         <children>
+            <ImageView fitHeight="44.0" fitWidth="150.0">
+               <image>
+                  <Image url="@../../../IconPackage/button_icon.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="change_label" layoutX="45.0" layoutY="9.0" text="Change">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
