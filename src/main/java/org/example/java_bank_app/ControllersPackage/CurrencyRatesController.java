@@ -30,6 +30,11 @@ import java.util.*;
 public class CurrencyRatesController implements Initializable {
     @FXML
     ComboBox<CurrencyCode> SourceCCComboBox, TargetCCComboBox;
+
+    public int getRateLabel() {
+        return Integer.parseInt(RateLabel.toString());
+    }
+
     @FXML
     Label RateLabel, DayLabel;
     @FXML
@@ -113,14 +118,6 @@ public class CurrencyRatesController implements Initializable {
 
         CCListView.getSelectionModel().select(0);
 
-
-
-
-
-
-
-
-
         //Slider Area
         DaySlider.valueProperty().addListener((observableValue, oldValue, newValue) -> {
             sliderDayValue = newValue.intValue();
@@ -157,6 +154,19 @@ public class CurrencyRatesController implements Initializable {
             TargetValueTextField.setText(String.valueOf(decimalFormat.format(calculatedValue)));
         }
     }
+//    @Override
+//    public void acalculateRate(){
+//
+//        boolean isInputEmpty = SourceValueTextField.getText().isEmpty();
+//        boolean isBalanceValid = SourceValueTextField.getText().matches("\\d+(\\.\\d{1,2})?");
+//
+//        if(!isBalanceValid || isInputEmpty) CustomAlert.showInfoAlert("wrong input");
+//        else{
+//            double calculatedValue = Double.parseDouble(SourceValueTextField.getText().trim()) * finalRate;
+//            DecimalFormat decimalFormat = new DecimalFormat("#.##");
+//            TargetValueTextField.setText(String.valueOf(decimalFormat.format(calculatedValue)));
+//        }
+//    }
 
     //priv methods
 

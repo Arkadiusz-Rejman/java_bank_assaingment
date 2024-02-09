@@ -1,5 +1,6 @@
 package org.example.java_bank_app.SQLPackage;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.example.java_bank_app.CurrencyPackage.CurrencyCode;
@@ -329,6 +330,22 @@ public class mySQL_class{
         preparedStatement.setString(1, newname);
         preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
+    }
+
+    public static void changeWalletStatus(ObjectProperty<Wallet> wallet, String string){
+        try{
+            Connection connection = DriverManager.getConnection(DB_url,DB_username,DB_password);
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE wallet SET status = ? WHERE id = ?"
+            );
+
+            preparedStatement.setString(1, string);
+            preparedStatement.setInt(2, wallet.getValue().getId());
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     //class "}"

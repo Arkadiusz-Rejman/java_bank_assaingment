@@ -93,16 +93,17 @@ public class TransferController implements Initializable {
                     }
                 }
                 if (helperwallet != null) {
-                    Transaction transaction = new Transaction(wallet_box.getValue(), helperwallet, int_transfer_amount);
-                    mySQL_class.makeTransaction(transaction);
+                    if(wallet_box.getValue().getStatus().toString().equals("INACTIVE") || helperwallet.getStatus().toString().equals("INACTIVE")) {
+                        CustomAlert.showInfoAlert("Sender/receiver wallet is inactive");
+                    }else{
+                        Transaction transaction = new Transaction(wallet_box.getValue(), helperwallet, int_transfer_amount);
+                        mySQL_class.makeTransaction(transaction);
 
+                        CustomAlert.showInfoAlert("money has been sent :)");
 
-                    CustomAlert.showInfoAlert("money has been sent :)");
-
-
-                    Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    currentStage.close();
-
+                        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        currentStage.close();
+                    }
                 } else {
                     CustomAlert.showInfoAlert("user dont have wallet in your currency, transaction is cancelled.");
                 }

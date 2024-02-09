@@ -71,7 +71,26 @@ public class WalletOptionsController implements Initializable {
             stage.show();
         }
 
-    public void onStatusbuttonClick(){
+    public void onStatusbuttonClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginGUI.class.getResource("ChangeWalletStatus-view.fxml"));
+        File cssFile = new File("src/main/resources/org/example/java_bank_app/C_WalletOptions_style.css");
+        Parent root = fxmlLoader.load();
+
+        ChangeWalletStatusController changeWalletStatusController = fxmlLoader.getController();
+        changeWalletStatusController.passUser(user);
+        changeWalletStatusController.passActuallWallet(actuallWallet);
+
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setTitle("Wallet status change");
+
+        scene.getStylesheets().add(cssFile.toURI().toURL().toExternalForm());
+
+        stage.setScene(scene);
+        stage.setX(600);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
 
     }
     public void onCurrencybuttonclick(){

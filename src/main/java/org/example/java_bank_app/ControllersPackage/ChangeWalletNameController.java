@@ -28,6 +28,7 @@ public class ChangeWalletNameController implements Initializable {
     public Label change_label;
     public TextField name_field;
     public Group change_button;
+    public Label newwalletname_label;
     private User user;
     private ObjectProperty<Wallet> actuallWallet;
 
@@ -38,6 +39,8 @@ public class ChangeWalletNameController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        newwalletname_label.getStyleClass().add("change-text");
+
         change_label.setStyle("-fx-text-fill: black");
         CustomAnimations.glowOnMouseEnter(Color.GOLD, change_button);
         Platform.runLater(() -> {

@@ -15,7 +15,7 @@
             <Image url="@../../../IconPackage/background.png" />
          </image>
       </ImageView>
-      <Label layoutX="142.0" layoutY="74.0" text="New wallet name:" />
+      <Label fx:id="newwalletname_label" layoutX="142.0" layoutY="74.0" text="New wallet name:" />
       <TextField fx:id="name_field" layoutX="114.0" layoutY="100.0" />
       <Group fx:id="change_button" layoutX="114.0" layoutY="160.0" onMouseClicked="#changeName">
          <children>
