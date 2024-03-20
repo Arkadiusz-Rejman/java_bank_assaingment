@@ -18,32 +18,26 @@ Trying to register with login that already exist:
 Password re-typed with a mistake:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/62c273cc-722e-412d-9d14-03302f579522)
 
-
 Login attpemt with bad login typed:
-
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/337e2c47-af74-408f-b297-ef07fd5fa4b7)
 
 Succesfully logged and redirect to main window:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/10b4bf83-ab5f-41cb-91cd-3c8d64cee048)
 
-
 Adding a new wallet to account from main window:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/22ff3ef2-05c1-401d-a836-f27e3a2aa713)
-
 
 Changing wallet name, wallet option window on left:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/a26919b9-f4d5-460d-9ae8-5f745092506a)
 
-
 Changing wallet status:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/3ef3f0c8-2a50-4942-9d05-46fa5b360a84)
-
 
 Wallet status and name changed on main screen:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/8377461b-6966-4508-9b79-be61c7a3ba30)
 
-
 Window with user wallets list:
+
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/8fb83f79-ed1d-48be-920f-0e66553e984e)
 
 The CurrencyRates window shows the solution (here case the EUR and USD exchange rate) in relation to the current currency wallet, in the arrangement of some screens a simple currency calculator:
