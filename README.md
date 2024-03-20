@@ -24,7 +24,8 @@ Login attpemt with bad login typed:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/337e2c47-af74-408f-b297-ef07fd5fa4b7)
 
 Succesfully logged and redirect to main window:
-![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/efa0ffdd-28a8-4fea-b326-f40515413da2)
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/10b4bf83-ab5f-41cb-91cd-3c8d64cee048)
+
 
 Adding a new wallet to account from main window:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/4be89e9f-be43-4c02-80ab-46f5bb1722ac)
