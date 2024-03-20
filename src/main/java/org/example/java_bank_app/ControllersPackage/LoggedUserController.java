@@ -75,12 +75,6 @@ public class LoggedUserController implements Initializable {
                 TransactionHistoryButton, CurrencyRatesButton, ShowWalletsButton
         );
 
-
-
-
-        //Platform runLater musi być używany podczas gdy korzystamy ze zmiennej z innej klasy.
-        //Dzieje się tak, gdyż blok inicjalizacyjny jest wykonywany przed przekazaniem zmiennej
-
         Platform.runLater(() -> {
             //User Area
             UserNameLabel.setText(user.getUsername());

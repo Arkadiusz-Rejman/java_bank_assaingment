@@ -52,7 +52,7 @@ public class ChangeWalletNameController implements Initializable {
         boolean isNameTaken = mySQL_class.getUserWallets(user).stream().anyMatch(wallet -> wallet.getName().equals(name_field.getText()));
 
 
-        if(isInputEmpty || isNameTaken) CustomAlert.showInfoAlert("wrong input/name taken");
+        if(isInputEmpty || isNameTaken) CustomAlert.showInfoAlert("Wrong input/name taken");
         else {
          //code
             mySQL_class.ChangeWalletName(actuallWallet.getValue().getId(), name_field.getText());

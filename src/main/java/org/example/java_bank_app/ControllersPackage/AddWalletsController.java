@@ -58,7 +58,7 @@ public class AddWalletsController implements Initializable {
         boolean isBalanceValid = BalanceTextField.getText().matches("\\d+(\\.\\d{1,2})?");
         boolean isNameTaken = mySQL_class.getUserWallets(user).stream().anyMatch(wallet -> wallet.getName().equals(WalletNameTextField.getText()));
 
-        if(!isBalanceValid || isInputEmpty || isNameTaken) CustomAlert.showInfoAlert("wrong input/name taken");
+        if(!isBalanceValid || isInputEmpty || isNameTaken) CustomAlert.showInfoAlert("Wrong input/name taken");
         else {
             CurrencyCode currencyCode = CurrencyCodeComboBox.getValue();
             String walletName = WalletNameTextField.getText();

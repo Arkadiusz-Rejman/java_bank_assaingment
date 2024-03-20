@@ -84,7 +84,6 @@ public class ShowWalletsController implements Initializable {
     }
     @FXML
     private void handleMouseClicked(MouseEvent event) {
-        // Ustaw selectionModel na null, aby uniemożliwić zaznaczanie
         wallet_list.setSelectionModel(null);
     }
 
