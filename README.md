@@ -52,7 +52,8 @@ Logged in with another user used for testing application from the beginning of i
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/24687366-29c5-41aa-89a4-67a3217d57d1)
 
 Attempt to make a transaction to a user without a currency account:
-![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/2f534afe-8aa5-44a2-9c79-660337c12f7b)
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/32ff5a1b-dede-47c5-9713-90153b5eed43)
+
 
 
 
