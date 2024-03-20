@@ -32,7 +32,8 @@ Changing wallet name, wallet option window on left:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/f9eb0696-cee7-41b3-95af-e4c72a083e34)
 
 Changing wallet status:
-![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/bf6c9fde-6168-4241-9f30-5457505415e8)
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/3ef3f0c8-2a50-4942-9d05-46fa5b360a84)
+
 
 Wallet status and name changed on main screen:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/bbb13ff9-6afc-4969-9f9d-dea5e21c79b5)
