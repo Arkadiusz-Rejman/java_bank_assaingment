@@ -28,7 +28,8 @@ Succesfully logged and redirect to main window:
 
 
 Adding a new wallet to account from main window:
-![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/4be89e9f-be43-4c02-80ab-46f5bb1722ac)
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/22ff3ef2-05c1-401d-a836-f27e3a2aa713)
+
 
 Changing wallet name, wallet option window on left:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/f9eb0696-cee7-41b3-95af-e4c72a083e34)
