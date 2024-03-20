@@ -45,7 +45,8 @@ The CurrencyRates window shows the solution (here case the EUR and USD exchange 
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/e74ad76a-69bf-4a74-899e-841636c5644d)
 
 The TransactionHistory window displays the entire transaction history user at the top of the screen, but in this case, the active wallet is not has no history, so a message is displayed stating this:
-![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/ff9254de-06cd-40f3-917d-c937325b919d)
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/5c732eba-2624-4e3f-ba4d-1124ec8c51bb)
+
 
 Logged in with another user used for testing application from the beginning of its creation, its wallet has a rich history:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/24687366-29c5-41aa-89a4-67a3217d57d1)
