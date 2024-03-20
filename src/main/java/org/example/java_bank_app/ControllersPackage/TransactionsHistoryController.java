@@ -65,7 +65,7 @@ public class TransactionsHistoryController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> {
 
-            //INICJALIZACJA
+            //INIT
             allUserTransactions = mySQL_class.getUserTransactions(user);
             Collections.reverse(allUserTransactions);
             walletIDTransactions = new HashMap<>();

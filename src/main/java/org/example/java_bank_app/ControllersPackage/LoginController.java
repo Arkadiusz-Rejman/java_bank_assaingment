@@ -55,7 +55,6 @@ public class LoginController implements Initializable {
 
         password_field.setOnKeyPressed(e -> {
             if (e.getCode().toString().equals("ENTER")) {
-                // Wywołanie funkcji po naciśnięciu Enter
                 try {
                     onLoginButtonClick();
                 } catch (IOException ex) {

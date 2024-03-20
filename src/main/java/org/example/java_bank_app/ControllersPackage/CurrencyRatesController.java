@@ -147,7 +147,7 @@ public class CurrencyRatesController implements Initializable {
         boolean isInputEmpty = SourceValueTextField.getText().isEmpty();
         boolean isBalanceValid = SourceValueTextField.getText().matches("\\d+(\\.\\d{1,2})?");
 
-        if(!isBalanceValid || isInputEmpty) CustomAlert.showInfoAlert("wrong input");
+        if(!isBalanceValid || isInputEmpty) CustomAlert.showInfoAlert("Wrong input");
         else{
             double calculatedValue = Double.parseDouble(SourceValueTextField.getText().trim()) * finalRate;
             DecimalFormat decimalFormat = new DecimalFormat("#.##");

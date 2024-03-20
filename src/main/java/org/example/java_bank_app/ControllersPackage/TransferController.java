@@ -46,8 +46,6 @@ public class TransferController implements Initializable {
     ObjectProperty<Wallet> actuallWallet;
     ObservableList<Wallet> availableWallets;
     User user;
-    //quickfix podpowiada żeby zmienić na lokalne ale musze z nich zrobić zpaytanie do SQL i jeszcze nie wiem jak
-    //więc mam je tu żeby o nich pamietać gdybym je przesyłał do innej klasy pdw.
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -72,12 +70,6 @@ public class TransferController implements Initializable {
         BigDecimal int_transfer_amount = BigDecimal.valueOf(Double.parseDouble(transfer_amount.getText()));
         String string_target_username = target_user.getText();
 
-        //Teraz -> wysłać zapytanie do sql
-        //Transaction type temporary
-        //Transaction type wywalilem z bazy danych, bo dopiero na podstawie tego czy jesteś odbiorcą czy wysyłajacym
-        //w historii, będę mógł ustalić czy type jest send czy receive
-
-
         if (mySQL_class.isUsernameAvaliable(string_target_username)) {
             if (int_transfer_amount.doubleValue() <= wallet_box.getValue().getMoneyAmount().doubleValue()) {
                 List<Wallet> activeWallets = mySQL_class.getUserWallets_byid(mySQL_class.find_user_id_by_nickname(string_target_username))
@@ -85,7 +77,6 @@ public class TransferController implements Initializable {
 
                 ObservableList<Wallet> wallets = FXCollections.observableArrayList(activeWallets);
 
-                //pętla do zmiany - narazie działa
                 for (Wallet wallet : wallets) {
                     if (wallet.getCurrency().getCurrencyCode() == wallet_box.getValue().getCurrency().getCurrencyCode()) {
                         helperwallet = wallet;
@@ -94,24 +85,24 @@ public class TransferController implements Initializable {
                 }
                 if (helperwallet != null) {
                     if(wallet_box.getValue().getStatus().toString().equals("INACTIVE") || helperwallet.getStatus().toString().equals("INACTIVE")) {
-                        CustomAlert.showInfoAlert("Sender/receiver wallet is inactive");
+                        CustomAlert.showInfoAlert("Sender/Receiver wallet is inactive");
                     }else{
                         Transaction transaction = new Transaction(wallet_box.getValue(), helperwallet, int_transfer_amount);
                         mySQL_class.makeTransaction(transaction);
 
-                        CustomAlert.showInfoAlert("money has been sent :)");
+                        CustomAlert.showInfoAlert("Money has been sent :)");
 
                         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         currentStage.close();
                     }
                 } else {
-                    CustomAlert.showInfoAlert("user dont have wallet in your currency, transaction is cancelled.");
+                    CustomAlert.showInfoAlert("User don't have wallet in your currency, transaction is cancelled.");
                 }
             } else {
-                CustomAlert.showInfoAlert("you don't have enough money");
+                CustomAlert.showInfoAlert("You don't have enough money");
             }
         } else {
-            CustomAlert.showInfoAlert("target not existing");
+            CustomAlert.showInfoAlert("Target not existing");
         }
     }
 

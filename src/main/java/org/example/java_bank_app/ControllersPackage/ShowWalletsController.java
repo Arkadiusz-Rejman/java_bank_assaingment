@@ -55,8 +55,6 @@ public class ShowWalletsController implements Initializable {
                                 setStyle("-fx-background-color: gold;");
                             } else {
                                 setText(wallet.toString());
-
-                                // Ustawianie stylu w zależności od indeksu
                                 if (isYellow) {
                                     setStyle("-fx-background-color: gold;");
                                 } else {
