@@ -84,6 +84,21 @@ Attempting to execute a transaction to a non-existent user, transaction was not 
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/0a42869d-819f-4ef6-82b7-3e96d7bf9696)
 
 
+The security also covers the sender's account balance:
+
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/447c86c2-d236-4e5b-9f8e-6813edbd0289)
+
+
+Correctly executed transaction in dollars:
+
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/64d8e3ea-66e4-4e88-b9c4-3c91a50b1030)
+
+
+Wykonane transakcje widoczne w historii:
+
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/b3609f26-f2b3-425f-af4a-909899b94d33)
+
+
 
 
 
