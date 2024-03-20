@@ -19,6 +19,7 @@ Password re-typed with a mistake:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/62c273cc-722e-412d-9d14-03302f579522)
 
 Login attpemt with bad login typed:
+
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/337e2c47-af74-408f-b297-ef07fd5fa4b7)
 
 Succesfully logged and redirect to main window:
