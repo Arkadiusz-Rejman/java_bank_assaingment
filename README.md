@@ -38,6 +38,7 @@ Wallet status and name changed on main screen:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/bbb13ff9-6afc-4969-9f9d-dea5e21c79b5)
 
 Window with user wallets list:
+
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/8fb83f79-ed1d-48be-920f-0e66553e984e)
 
 The CurrencyRates window shows the solution (here case the EUR and USD exchange rate) in relation to the current currency wallet, in the arrangement of some screens a simple currency calculator:
