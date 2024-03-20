@@ -15,7 +15,6 @@ Creating new user:
 Trying to register with login that already exist:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/9f2712be-795e-495c-9096-01d6d787f3e4)
 
-
 Password re-typed with a mistake:
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/f847f9ce-475c-49fe-a4f0-8da04680c887)
 
