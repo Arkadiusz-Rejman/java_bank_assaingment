@@ -79,6 +79,11 @@ Attempt to make a transaction to a user without a currency account:
 
 ![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/32ff5a1b-dede-47c5-9713-90153b5eed43)
 
+Attempting to execute a transaction to a non-existent user, transaction was not executed (when we enter incorrect data into the Enter amount: to cell thanks to the protection, after pressing the send button, nothing will happen. They have to find data there with the correct format "*.##"):
+
+![image](https://github.com/Arkadiusz-Rejman/java_bank_assaingment/assets/78605732/0a42869d-819f-4ef6-82b7-3e96d7bf9696)
+
+
 
 
 
